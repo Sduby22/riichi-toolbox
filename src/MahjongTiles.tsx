@@ -77,14 +77,20 @@ function parseTileSeg(tileseg: string): TileType[] {
     );
   }
 
-  return num
-    .split("")
-    .map((n) => {
-      const tilestr = `${n}${tile}` as keyof typeof TileType;
-      const tiletype: TileType = TileType[tilestr];
-      return Array(count.length > 0 ? parseInt(count) : 1).fill(tiletype);
-    })
-    .flat();
+  if (num.length === 0) {
+    return Array(count.length > 0 ? parseInt(count) : 1).fill(
+      TileType[tile as keyof typeof TileType]
+    );
+  } else {
+    return num
+      .split("")
+      .map((n) => {
+        const tilestr = `${n}${tile}` as keyof typeof TileType;
+        const tiletype: TileType = TileType[tilestr];
+        return Array(count.length > 0 ? parseInt(count) : 1).fill(tiletype);
+      })
+      .flat();
+  }
 }
 
 function tileSort(a: TileType, b: TileType) {
