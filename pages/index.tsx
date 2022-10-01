@@ -10,6 +10,8 @@ import {
   Toolbar,
   IconButton,
   Drawer,
+  Tabs,
+  Tab,
 } from "@mui/material";
 
 import DescriptionIcon from "@mui/icons-material/Description";
@@ -25,13 +27,30 @@ import Home from "../src/components/Home";
 
 let foo = 1;
 const Page: NextPage = () => {
-  const [value, setValue] = useState("Home");
+  const [navValue, setNavValue] = useState("Home");
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [tabValue, setTabValue] = useState(0);
+
   const drawerWidth = 240;
+
+  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    setTabValue(newValue);
+  };
+
+  const handleTabChangeIndex = (index: number) => {
+    setTabValue(index);
+  };
 
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
   };
+
+  function a11yProps(index: number) {
+    return {
+      id: `full-width-tab-${index}`,
+      "aria-controls": `full-width-tabpanel-${index}`,
+    };
+  }
 
   return (
     <>
@@ -56,6 +75,19 @@ const Page: NextPage = () => {
               News
             </Typography>
           </Toolbar>
+
+          {navValue === "Cheatsheet" && (
+            <Tabs
+              value={tabValue}
+              onChange={handleTabChange}
+              indicatorColor="secondary"
+              textColor="inherit"
+              variant="fullWidth"
+            >
+              <Tab label="Yaku List" {...a11yProps(0)} />
+              <Tab label="Fu List" {...a11yProps(1)} />
+            </Tabs>
+          )}
         </AppBar>
 
         <Drawer
@@ -73,11 +105,14 @@ const Page: NextPage = () => {
           }}
         ></Drawer>
 
-        <Box sx={{ display: "flex", flexGrow: 1, p: 3 }}>
-          {value === "Home" && <Home />}
-          {value === "Cheatsheet" && <Cheatsheet />}
-          {value === "Others" && <Others />}
-        </Box>
+        {navValue === "Home" && <Home />}
+        {navValue === "Cheatsheet" && (
+          <Cheatsheet
+            tabValue={tabValue}
+            handleTabChangeIndex={handleTabChangeIndex}
+          />
+        )}
+        {navValue === "Others" && <Others />}
 
         {/* bottom naviation bar */}
         <Box sx={{ display: "flex" }}>
@@ -86,9 +121,9 @@ const Page: NextPage = () => {
             elevation={3}
           >
             <BottomNavigation
-              value={value}
+              value={navValue}
               onChange={(_, newValue) => {
-                setValue(newValue);
+                setNavValue(newValue);
                 console.log(newValue);
               }}
             >
