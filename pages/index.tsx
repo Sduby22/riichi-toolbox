@@ -15,8 +15,10 @@ import {
 } from "@mui/material";
 
 import CasinoIcon from "@mui/icons-material/Casino";
+import DescriptionIcon from "@mui/icons-material/Description";
 import HomeIcon from "@mui/icons-material/Home";
 import CategoryIcon from "@mui/icons-material/Category";
+import CalculateIcon from "@mui/icons-material/Calculate";
 
 import { useState } from "react";
 import Cheatsheet from "../src/Cheatsheet";
@@ -25,7 +27,7 @@ import Home from "../src/Home";
 
 let foo = 1;
 const Page: NextPage = () => {
-  const [value, setValue] = useState("Cheatsheet");
+  const [value, setValue] = useState("Home");
 
   return (
     <>
@@ -52,7 +54,12 @@ const Page: NextPage = () => {
           <BottomNavigationAction
             value="Cheatsheet"
             label="Cheatsheet"
-            icon={<CasinoIcon />}
+            icon={<DescriptionIcon />}
+          />
+          <BottomNavigationAction
+            value="Calculator"
+            label="Calculator"
+            icon={<CalculateIcon />}
           />
           <BottomNavigationAction
             label="Home"
