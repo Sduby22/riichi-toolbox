@@ -64,21 +64,21 @@ interface YakuType {
 
 const YAKUS: YakuType[] = [
   {
-    name: "Tanyao",
+    name: "tanyao",
     han: 1,
     fuuroHan: 1,
     frequency: 5,
     example: "234m 406m 678s 345p 88p",
   },
   {
-    name: "Iipeikou",
+    name: "iipeikou",
     han: 1,
     fuuroHan: -1,
     frequency: 5,
     example: "234m 234m 234s 345p chun2",
   },
   {
-    name: "Sanshoku Doujun",
+    name: "sanshoku",
     han: 2,
     fuuroHan: 1,
     frequency: 4,
