@@ -12,6 +12,7 @@ import {
   Drawer,
   Tabs,
   Tab,
+  Collapse,
 } from "@mui/material";
 
 import DescriptionIcon from "@mui/icons-material/Description";
@@ -72,11 +73,11 @@ const Page: NextPage = () => {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              News
+              {navValue}
             </Typography>
           </Toolbar>
 
-          {navValue === "Cheatsheet" && (
+          <Collapse in={navValue === "Cheatsheet"} timeout={50}>
             <Tabs
               value={tabValue}
               onChange={handleTabChange}
@@ -87,7 +88,19 @@ const Page: NextPage = () => {
               <Tab label="Yaku List" {...a11yProps(0)} />
               <Tab label="Fu List" {...a11yProps(1)} />
             </Tabs>
-          )}
+          </Collapse>
+          {/* {navValue === "Cheatsheet" && (
+            <Tabs
+              value={tabValue}
+              onChange={handleTabChange}
+              indicatorColor="secondary"
+              textColor="inherit"
+              variant="fullWidth"
+            >
+              <Tab label="Yaku List" {...a11yProps(0)} />
+              <Tab label="Fu List" {...a11yProps(1)} />
+            </Tabs>
+          )} */}
         </AppBar>
 
         <Drawer
