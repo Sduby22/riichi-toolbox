@@ -1,14 +1,10 @@
 {
-    "tanyao": {
-        "name": "Tanyao",
-        "description": "Only the tiles 2 through 8 (no 1s, 9s, or honors)"
-    },
-    "sanshoku": {
-        "name": "Sanshoku Doujun",
-        "description": "The same sequence in each suit"
-    },
-    "iipeikou": {
-        "name": "Iipeikou",
-        "description": "Two of the exact same sequence"
-    }
+    "han": "Han",
+    "fu": "Fu",
+    "tanyao.name": "Tanyao",
+    "tanyao.description": "Only the tiles 2 through 8 (no 1s, 9s, or honors)",
+    "sanshoku.name": "Sanshoku Doujun",
+    "sanshoku.description": "The same sequence in each suit",
+    "iipeikou.name": "Iipeikou",
+    "iipeikou.description": "Two of the exact same sequence"
 }
