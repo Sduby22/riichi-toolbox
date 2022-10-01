@@ -37,7 +37,7 @@ function Tile({ variant, maxWidth = 50 }: Props) {
   const theme = useTheme();
   const color = theme.palette.mode === "light" ? "regular" : "black";
   return (
-    <Box sx={{ maxWidth, position: "relative", ml: "1px" }}>
+    <Box sx={{ maxWidth, position: "relative", ml: "1px", display: "flex" }}>
       <img
         src={`/tiles/${color}/front.svg`}
         alt="asdsad"
@@ -52,7 +52,7 @@ function Tile({ variant, maxWidth = 50 }: Props) {
           left: 0,
           right: 0,
           top: 0,
-          bottom: "9%",
+          bottom: 0,
           margin: "auto",
         }}
       />

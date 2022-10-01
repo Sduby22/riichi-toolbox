@@ -89,18 +89,6 @@ const Page: NextPage = () => {
               <Tab label="Fu List" {...a11yProps(1)} />
             </Tabs>
           </Collapse>
-          {/* {navValue === "Cheatsheet" && (
-            <Tabs
-              value={tabValue}
-              onChange={handleTabChange}
-              indicatorColor="secondary"
-              textColor="inherit"
-              variant="fullWidth"
-            >
-              <Tab label="Yaku List" {...a11yProps(0)} />
-              <Tab label="Fu List" {...a11yProps(1)} />
-            </Tabs>
-          )} */}
         </AppBar>
 
         <Drawer
