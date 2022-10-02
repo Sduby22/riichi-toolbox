@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
-import Image from "next/image";
 import { Box, Paper, useTheme } from "@mui/material";
+import { grey } from "@mui/material/colors";
 
 // prettier-ignore
 // '0m' means aka dora
@@ -33,14 +33,25 @@ function Tile({ variant, maxWidth = 50 }: Props) {
   } else {
     variantString = variant;
   }
-  const offset = (maxWidth * (1 - innerSize)) / 2;
   const theme = useTheme();
   const color = theme.palette.mode === "light" ? "regular" : "black";
   return (
-    <Box sx={{ maxWidth, position: "relative", ml: "1px", display: "flex" }}>
+    <Box
+      sx={{
+        maxWidth,
+        position: "relative",
+        ml: "1px",
+        display: "flex",
+      }}
+    >
       <Paper
-        sx={{ width: "100%", aspectRatio: "3/4", display: "flex" }}
-        elevation={3}
+        sx={{
+          width: "100%",
+          aspectRatio: "3/4",
+          display: "flex",
+          bgcolor: color === "black" ? "#070707" : grey[100],
+        }}
+        elevation={2}
       >
         <img
           src={`/tiles/${color}/${variantString}.svg`}

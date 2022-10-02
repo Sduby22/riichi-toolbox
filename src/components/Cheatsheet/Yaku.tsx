@@ -1,16 +1,11 @@
 import React from "react";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
 import Tiles from "../../MahjongTiles";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import SwipeableViews, { OnChangeIndexCallback } from "react-swipeable-views";
 import yakujson from "./yakus.json";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import {
-  Button,
   Card,
-  CardActions,
   CardContent,
   Chip,
   Collapse,
@@ -18,11 +13,8 @@ import {
   Divider,
   List,
   ListItemButton,
-  ListItemIcon,
-  ListItemText,
   ListSubheader,
   Paper,
-  Slide,
 } from "@mui/material";
 import { FormattedMessage } from "react-intl";
 
@@ -32,8 +24,6 @@ interface YakuType {
   meldedHan: number;
   frequency: number;
   example: string;
-  // open?: boolean;
-  // setOpen?: Function;
 }
 
 const YAKUS = yakujson as YakuType[];
@@ -55,6 +45,37 @@ YAKUS.forEach((yaku) => {
 YAKUS.forEach((yaku) => {
   freqMap[yaku.frequency].push(yaku);
 });
+
+const HAN_PALETTE: { [key: number]: { bgcolor: string; color: string } } = {
+  1: {
+    bgcolor: "primary.main",
+    color: "primary.contrastText",
+  },
+  2: {
+    bgcolor: "primary.dark",
+    color: "primary.contrastText",
+  },
+  3: {
+    bgcolor: "secondary.main",
+    color: "secondary.contrastText",
+  },
+  5: {
+    bgcolor: "secondary.dark",
+    color: "secondary.contrastText",
+  },
+  6: {
+    bgcolor: "secondary.dark",
+    color: "secondary.contrastText",
+  },
+  13: {
+    bgcolor: "warning.light",
+    color: "warning.contrastText",
+  },
+  26: {
+    bgcolor: "warning.light",
+    color: "warning.contrastText",
+  },
+};
 
 hanMap.forEach((yakus) => yakus.sort((a, b) => b.frequency - a.frequency));
 freqMap.forEach((yakus) => yakus.sort((a, b) => a.han - b.han));
@@ -126,7 +147,11 @@ function YakuListItem({ yaku }: YakuListItemProp) {
             />
           </MyCard>
         )}
-        <MyCard sx={{ ml: 1, minWidth: 50 }}>
+        <MyCard
+          sx={{ ml: 1, minWidth: 50 }}
+          bgcolor={HAN_PALETTE[yaku.han].bgcolor}
+          color={HAN_PALETTE[yaku.han].color}
+        >
           {`${yaku.han > 12 ? Array(yaku.han / 13 + 1).join("★") : yaku.han}${
             yaku.han - 1 === yaku.meldedHan ? "-" : ""
           }`}
