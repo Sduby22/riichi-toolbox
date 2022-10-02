@@ -13,8 +13,14 @@ import {
   Tabs,
   Tab,
   Collapse,
+  NoSsr,
 } from "@mui/material";
 
+import ToggleIcon from "material-ui-toggle-icon";
+import DescriptionOutlined from "@mui/icons-material/DescriptionOutlined";
+import HomeOutlined from "@mui/icons-material/HomeOutlined";
+import CategoryOutlined from "@mui/icons-material/CategoryOutlined";
+import CalculateOutlined from "@mui/icons-material/CalculateOutlined";
 import DescriptionIcon from "@mui/icons-material/Description";
 import HomeIcon from "@mui/icons-material/Home";
 import CategoryIcon from "@mui/icons-material/Category";
@@ -121,39 +127,51 @@ const Page: NextPage = () => {
             sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
             elevation={3}
           >
-            <BottomNavigation
-              value={navValue}
-              onChange={(_, newValue) => {
-                setNavValue(newValue);
-                console.log(newValue);
-              }}
-            >
-              <BottomNavigationAction
-                value="Cheatsheet"
-                label="Cheatsheet"
-                icon={<DescriptionIcon />}
-              />
-              <BottomNavigationAction
-                value="Calculator"
-                label="Calculator"
-                icon={<CalculateIcon />}
-              />
-              <BottomNavigationAction
-                label="Home"
-                value="Home"
-                icon={<HomeIcon />}
-              />
-              <BottomNavigationAction
-                value="Others"
-                label="Others"
-                icon={<CategoryIcon />}
-              />
-            </BottomNavigation>
+
+            <NoSsr>
+              <BottomNavigation
+                value={navValue}
+                onChange={(_, newValue) => {
+                  setNavValue(newValue);
+                  console.log(newValue);
+                }}
+              >
+                <BottomNavigationAction
+                  value="Cheatsheet"
+                  label="Cheatsheet"
+                  icon={
+                    <ToggleIcon onIcon={<DescriptionIcon />} offIcon={<DescriptionOutlined />} on={navValue === 'Cheatsheet'} />
+                  }
+                />
+                <BottomNavigationAction
+                  value="Calculator"
+                  label="Calculator"
+                  icon={
+                    <ToggleIcon onIcon={<CalculateIcon />} offIcon={<CalculateOutlined />} on={navValue === 'Calculator'} />
+                  }
+                />
+                <BottomNavigationAction
+                  label="Home"
+                  value="Home"
+                  icon={
+                    <ToggleIcon onIcon={<HomeIcon />} offIcon={<HomeOutlined />} on={navValue === 'Home'} />
+                  }
+                />
+                <BottomNavigationAction
+                  value="Others"
+                  label="Others"
+                  icon={
+                    <ToggleIcon onIcon={<CategoryIcon />} offIcon={<CategoryOutlined />} on={navValue === 'Others'} />
+                  }
+                />
+              </BottomNavigation>
+            </NoSsr>
+
           </Paper>
         </Box>
       </Box>
     </>
   );
-};
+}
 
 export default Page;
