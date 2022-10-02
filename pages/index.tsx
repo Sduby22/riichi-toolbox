@@ -1,48 +1,47 @@
-import type { NextPage } from "next";
-import Head from "next/head";
 import {
   AppBar,
   BottomNavigation,
   BottomNavigationAction,
   Box,
-  Paper,
-  Typography,
-  Toolbar,
-  IconButton,
-  Drawer,
-  Tabs,
-  Tab,
   Collapse,
+  Drawer,
+  IconButton,
   NoSsr,
+  Paper,
   Slide,
+  Tab,
+  Tabs,
+  Toolbar,
+  Typography,
   useScrollTrigger,
 } from "@mui/material";
+import type { NextPage } from "next";
+import Head from "next/head";
 
-import ToggleIcon from "material-ui-toggle-icon";
-import DescriptionOutlined from "@mui/icons-material/DescriptionOutlined";
-import HomeOutlined from "@mui/icons-material/HomeOutlined";
-import CategoryOutlined from "@mui/icons-material/CategoryOutlined";
-import CalculateOutlined from "@mui/icons-material/CalculateOutlined";
-import DescriptionIcon from "@mui/icons-material/Description";
-import HomeIcon from "@mui/icons-material/Home";
-import CategoryIcon from "@mui/icons-material/Category";
 import CalculateIcon from "@mui/icons-material/Calculate";
+import CalculateOutlined from "@mui/icons-material/CalculateOutlined";
+import CategoryIcon from "@mui/icons-material/Category";
+import CategoryOutlined from "@mui/icons-material/CategoryOutlined";
+import DescriptionIcon from "@mui/icons-material/Description";
+import DescriptionOutlined from "@mui/icons-material/DescriptionOutlined";
+import HomeIcon from "@mui/icons-material/Home";
+import HomeOutlined from "@mui/icons-material/HomeOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
+import ToggleIcon from "material-ui-toggle-icon";
 
 import { useState } from "react";
 import Cheatsheet from "../src/components/Cheatsheet";
-import Others from "../src/components/Others";
 import Home from "../src/components/Home";
+import Others from "../src/components/Others";
 
-let foo = 1;
 const Page: NextPage = () => {
-  const [navValue, setNavValue] = useState("Home");
+  const [navValue, setNavValue] = useState("Cheatsheet");
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [tabValue, setTabValue] = useState(0);
 
   const drawerWidth = 240;
 
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
   };
 
@@ -101,7 +100,6 @@ const Page: NextPage = () => {
           </AppBar>
         </Slide>
 
-
         <Drawer
           variant="temporary"
           open={drawerOpen}
@@ -133,7 +131,6 @@ const Page: NextPage = () => {
           sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
           elevation={3}
         >
-
           <NoSsr>
             <BottomNavigation
               value={navValue}
@@ -146,37 +143,52 @@ const Page: NextPage = () => {
                 value="Cheatsheet"
                 label="Cheatsheet"
                 icon={
-                  <ToggleIcon onIcon={<DescriptionIcon />} offIcon={<DescriptionOutlined />} on={navValue === 'Cheatsheet'} />
+                  <ToggleIcon
+                    onIcon={<DescriptionIcon />}
+                    offIcon={<DescriptionOutlined />}
+                    on={navValue === "Cheatsheet"}
+                  />
                 }
               />
               <BottomNavigationAction
                 value="Calculator"
                 label="Calculator"
                 icon={
-                  <ToggleIcon onIcon={<CalculateIcon />} offIcon={<CalculateOutlined />} on={navValue === 'Calculator'} />
+                  <ToggleIcon
+                    onIcon={<CalculateIcon />}
+                    offIcon={<CalculateOutlined />}
+                    on={navValue === "Calculator"}
+                  />
                 }
               />
               <BottomNavigationAction
                 label="Home"
                 value="Home"
                 icon={
-                  <ToggleIcon onIcon={<HomeIcon />} offIcon={<HomeOutlined />} on={navValue === 'Home'} />
+                  <ToggleIcon
+                    onIcon={<HomeIcon />}
+                    offIcon={<HomeOutlined />}
+                    on={navValue === "Home"}
+                  />
                 }
               />
               <BottomNavigationAction
                 value="Others"
                 label="Others"
                 icon={
-                  <ToggleIcon onIcon={<CategoryIcon />} offIcon={<CategoryOutlined />} on={navValue === 'Others'} />
+                  <ToggleIcon
+                    onIcon={<CategoryIcon />}
+                    offIcon={<CategoryOutlined />}
+                    on={navValue === "Others"}
+                  />
                 }
               />
             </BottomNavigation>
           </NoSsr>
-
         </Paper>
       </Box>
     </>
   );
-}
+};
 
 export default Page;

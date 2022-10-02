@@ -1,3 +1,3 @@
 export default function Fu() {
-    return <>Yaku</>;
+  return <>Yaku</>;
 }
