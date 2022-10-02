@@ -36,37 +36,48 @@ function Tile({ variant, maxWidth = 50 }: Props) {
   const theme = useTheme();
   const color = theme.palette.mode === "light" ? "regular" : "black";
   return (
-    <Box
-      sx={{
+    <div
+      style={{
+        marginLeft: "2px",
+        width: "100%",
         maxWidth,
-        position: "relative",
-        ml: "1px",
-        display: "flex",
       }}
     >
-      <Paper
-        sx={{
+      <div
+        style={{
+          position: "relative",
           width: "100%",
-          aspectRatio: "3/4",
-          display: "flex",
-          bgcolor: color === "black" ? "#070707" : grey[100],
+          height: 0,
+          paddingTop: "133.33%",
         }}
-        elevation={2}
       >
-        <img
-          src={`/tiles/${color}/${variantString}.svg`}
-          alt="asdsad"
-          style={{
-            width: `${100 * innerSize}%`,
-            left: 0,
-            right: 0,
+        <Paper
+          sx={{
+            position: "absolute",
             top: 0,
-            bottom: 0,
-            margin: "auto",
+            left: 0,
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            bgcolor: color === "black" ? "#070707" : grey[100],
           }}
-        />
-      </Paper>
-    </Box>
+          elevation={2}
+        >
+          <img
+            src={`/tiles/${color}/${variantString}.svg`}
+            alt="asdsad"
+            style={{
+              width: `${100 * innerSize}%`,
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+              margin: "auto",
+            }}
+          />
+        </Paper>
+      </div>
+    </div>
   );
 }
 
