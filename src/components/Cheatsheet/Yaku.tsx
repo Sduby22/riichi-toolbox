@@ -157,7 +157,7 @@ function YakuListItem({ yaku }: YakuListItemProp) {
           }`}
         </MyCard>
       </ListItemButton>
-      <Collapse in={open} timeout={50}>
+      <Collapse in={open}>
         <CardContent sx={{ pt: 1, pb: 1, display: "flex" }}>
           <Typography
             sx={{ flexGrow: 1 }}
