@@ -56,6 +56,27 @@ const YAKUS: YakuType[] = [
     example: "234m 234s 234p 678p 8p2",
   },
   {
+    name: "ittsu",
+    han: 2,
+    meldedHan: 1,
+    frequency: 4,
+    example: "123m 456m 789m 345p 88p",
+  },
+  {
+    name: "riichi",
+    han: 1,
+    meldedHan: -1,
+    frequency: 5,
+    example: "234m 234m 234s 345p chun2",
+  },
+  {
+    name: "pinfu",
+    han: 1,
+    meldedHan: -1,
+    frequency: 5,
+    example: "234m 340m 234s 345p 99p",
+  },
+  {
     name: "daisangen",
     han: 13,
     meldedHan: 13,

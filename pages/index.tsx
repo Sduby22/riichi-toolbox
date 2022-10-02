@@ -14,6 +14,8 @@ import {
   Tab,
   Collapse,
   NoSsr,
+  Slide,
+  useScrollTrigger,
 } from "@mui/material";
 
 import ToggleIcon from "material-ui-toggle-icon";
@@ -66,36 +68,39 @@ const Page: NextPage = () => {
       </Head>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         {/* AppBar */}
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              {navValue}
-            </Typography>
-          </Toolbar>
+        <Slide appear={false} direction="down" in={!useScrollTrigger({})}>
+          <AppBar position="fixed">
+            <Toolbar>
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                onClick={handleDrawerToggle}
+                sx={{ mr: 2 }}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                {navValue}
+              </Typography>
+            </Toolbar>
 
-          <Collapse in={navValue === "Cheatsheet"} timeout={50}>
-            <Tabs
-              value={tabValue}
-              onChange={handleTabChange}
-              indicatorColor="secondary"
-              textColor="inherit"
-              variant="fullWidth"
-            >
-              <Tab label="Yaku List" {...a11yProps(0)} />
-              <Tab label="Fu List" {...a11yProps(1)} />
-            </Tabs>
-          </Collapse>
-        </AppBar>
+            <Collapse in={navValue === "Cheatsheet"} timeout={50}>
+              <Tabs
+                value={tabValue}
+                onChange={handleTabChange}
+                indicatorColor="secondary"
+                textColor="inherit"
+                variant="fullWidth"
+              >
+                <Tab label="Yaku List" {...a11yProps(0)} />
+                <Tab label="Fu List" {...a11yProps(1)} />
+              </Tabs>
+            </Collapse>
+          </AppBar>
+        </Slide>
+
 
         <Drawer
           variant="temporary"
@@ -112,63 +117,63 @@ const Page: NextPage = () => {
           }}
         ></Drawer>
 
-        {navValue === "Home" && <Home />}
-        {navValue === "Cheatsheet" && (
-          <Cheatsheet
-            tabValue={tabValue}
-            handleTabChangeIndex={handleTabChangeIndex}
-          />
-        )}
-        {navValue === "Others" && <Others />}
+        <Box sx={{ pb: 7, pt: navValue === "Cheatsheet" ? 13 : 8 }}>
+          {navValue === "Home" && <Home />}
+          {navValue === "Cheatsheet" && (
+            <Cheatsheet
+              tabValue={tabValue}
+              handleTabChangeIndex={handleTabChangeIndex}
+            />
+          )}
+          {navValue === "Others" && <Others />}
+        </Box>
 
         {/* bottom naviation bar */}
-        <Box sx={{ display: "flex" }}>
-          <Paper
-            sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-            elevation={3}
-          >
+        <Paper
+          sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+          elevation={3}
+        >
 
-            <NoSsr>
-              <BottomNavigation
-                value={navValue}
-                onChange={(_, newValue) => {
-                  setNavValue(newValue);
-                  console.log(newValue);
-                }}
-              >
-                <BottomNavigationAction
-                  value="Cheatsheet"
-                  label="Cheatsheet"
-                  icon={
-                    <ToggleIcon onIcon={<DescriptionIcon />} offIcon={<DescriptionOutlined />} on={navValue === 'Cheatsheet'} />
-                  }
-                />
-                <BottomNavigationAction
-                  value="Calculator"
-                  label="Calculator"
-                  icon={
-                    <ToggleIcon onIcon={<CalculateIcon />} offIcon={<CalculateOutlined />} on={navValue === 'Calculator'} />
-                  }
-                />
-                <BottomNavigationAction
-                  label="Home"
-                  value="Home"
-                  icon={
-                    <ToggleIcon onIcon={<HomeIcon />} offIcon={<HomeOutlined />} on={navValue === 'Home'} />
-                  }
-                />
-                <BottomNavigationAction
-                  value="Others"
-                  label="Others"
-                  icon={
-                    <ToggleIcon onIcon={<CategoryIcon />} offIcon={<CategoryOutlined />} on={navValue === 'Others'} />
-                  }
-                />
-              </BottomNavigation>
-            </NoSsr>
+          <NoSsr>
+            <BottomNavigation
+              value={navValue}
+              onChange={(_, newValue) => {
+                setNavValue(newValue);
+                console.log(newValue);
+              }}
+            >
+              <BottomNavigationAction
+                value="Cheatsheet"
+                label="Cheatsheet"
+                icon={
+                  <ToggleIcon onIcon={<DescriptionIcon />} offIcon={<DescriptionOutlined />} on={navValue === 'Cheatsheet'} />
+                }
+              />
+              <BottomNavigationAction
+                value="Calculator"
+                label="Calculator"
+                icon={
+                  <ToggleIcon onIcon={<CalculateIcon />} offIcon={<CalculateOutlined />} on={navValue === 'Calculator'} />
+                }
+              />
+              <BottomNavigationAction
+                label="Home"
+                value="Home"
+                icon={
+                  <ToggleIcon onIcon={<HomeIcon />} offIcon={<HomeOutlined />} on={navValue === 'Home'} />
+                }
+              />
+              <BottomNavigationAction
+                value="Others"
+                label="Others"
+                icon={
+                  <ToggleIcon onIcon={<CategoryIcon />} offIcon={<CategoryOutlined />} on={navValue === 'Others'} />
+                }
+              />
+            </BottomNavigation>
+          </NoSsr>
 
-          </Paper>
-        </Box>
+        </Paper>
       </Box>
     </>
   );
