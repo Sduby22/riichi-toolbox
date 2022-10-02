@@ -38,7 +38,10 @@ function Tile({ variant, maxWidth = 50 }: Props) {
   const color = theme.palette.mode === "light" ? "regular" : "black";
   return (
     <Box sx={{ maxWidth, position: "relative", ml: "1px", display: "flex" }}>
-      <Paper sx={{ width: "100%", aspectRatio: '3/4', display: 'flex' }} elevation={3} >
+      <Paper
+        sx={{ width: "100%", aspectRatio: "3/4", display: "flex" }}
+        elevation={3}
+      >
         <img
           src={`/tiles/${color}/${variantString}.svg`}
           alt="asdsad"
@@ -51,7 +54,7 @@ function Tile({ variant, maxWidth = 50 }: Props) {
             margin: "auto",
           }}
         />
-      </ Paper>
+      </Paper>
     </Box>
   );
 }

@@ -1,10 +1,18 @@
 {
-    "han": "Han",
-    "fu": "Fu",
-    "tanyao.name": "Tanyao",
-    "tanyao.description": "Only the tiles 2 through 8 (no 1s, 9s, or honors)",
-    "sanshoku.name": "Sanshoku Doujun",
-    "sanshoku.description": "The same sequence in each suit",
-    "iipeikou.name": "Iipeikou",
-    "iipeikou.description": "Two of the exact same sequence"
+  "han": "Han",
+  "fu": "Fu",
+  "tanyao.name": "Tanyao",
+  "tanyao.description": "Only the tiles 2 through 8 (no 1s, 9s, or honors)",
+  "sanshokudoujun.name": "Sanshoku Doujun",
+  "sanshokudoujun.description": "The same sequence in each suit",
+  "iipeikou.name": "Iipeikou",
+  "iipeikou.description": "Two of the exact same sequence",
+  "pinfu.name": "Pinfu",
+  "pinfu.description": "A hand worth 0 fu. All sequences, with a non-Yakuhai pair and a two sided open wait (23, not 12, 13, or 1234, eg.)",
+  "riichi.name": "Riichi",
+  "riichi.description": "1000 point bet. Cannot change hand, discard draws unless you win",
+  "ittsu.name": "Ittsu",
+  "ittsu.description": "The sequences 123, 456, and 789 in a suit",
+  "daisangen.name": "Daisangen",
+  "daisangen.description": "A set of each of the three dragons"
 }

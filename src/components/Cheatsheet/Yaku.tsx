@@ -1,4 +1,3 @@
-
 import React from "react";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
@@ -6,11 +5,14 @@ import Tiles from "../../MahjongTiles";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import SwipeableViews, { OnChangeIndexCallback } from "react-swipeable-views";
+import yakujson from "./yakus.json";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import {
   Button,
   Card,
   CardActions,
   CardContent,
+  Chip,
   Collapse,
   Container,
   Divider,
@@ -20,6 +22,7 @@ import {
   ListItemText,
   ListSubheader,
   Paper,
+  Slide,
 } from "@mui/material";
 import { FormattedMessage } from "react-intl";
 
@@ -33,66 +36,13 @@ interface YakuType {
   // setOpen?: Function;
 }
 
-const YAKUS: YakuType[] = [
-  {
-    name: "tanyao",
-    han: 1,
-    meldedHan: 1,
-    frequency: 5,
-    example: "234m 406m 678s 345p 88p",
-  },
-  {
-    name: "iipeikou",
-    han: 1,
-    meldedHan: -1,
-    frequency: 5,
-    example: "234m 234m 234s 345p chun2",
-  },
-  {
-    name: "sanshoku",
-    han: 2,
-    meldedHan: 1,
-    frequency: 4,
-    example: "234m 234s 234p 678p 8p2",
-  },
-  {
-    name: "ittsu",
-    han: 2,
-    meldedHan: 1,
-    frequency: 4,
-    example: "123m 456m 789m 345p 88p",
-  },
-  {
-    name: "riichi",
-    han: 1,
-    meldedHan: -1,
-    frequency: 5,
-    example: "234m 234m 234s 345p chun2",
-  },
-  {
-    name: "pinfu",
-    han: 1,
-    meldedHan: -1,
-    frequency: 5,
-    example: "234m 340m 234s 345p 99p",
-  },
-  {
-    name: "daisangen",
-    han: 13,
-    meldedHan: 13,
-    frequency: 1,
-    example: "haku3 chun3 hatsu3 99m 234s"
-  },
-  {
-    name: "daisuushii",
-    han: 26,
-    meldedHan: 26,
-    frequency: 1,
-    example: "ton3 nan3 shaa3 pei3 99m"
-  }
-];
+const YAKUS = yakujson as YakuType[];
 
 let hanMap: YakuType[][] = Array(27)
+  .fill(0)
+  .map(() => []);
+
+let freqMap: YakuType[][] = Array(6)
   .fill(0)
   .map(() => []);
 
@@ -101,39 +51,55 @@ YAKUS.forEach((yaku) => {
   hanMap[yaku.han].push(yaku);
 });
 
-hanMap.forEach(yakus => yakus.sort((a, b) => b.frequency - a.frequency));
+// Group yaku by frequency
+YAKUS.forEach((yaku) => {
+  freqMap[yaku.frequency].push(yaku);
+});
+
+hanMap.forEach((yakus) => yakus.sort((a, b) => b.frequency - a.frequency));
+freqMap.forEach((yakus) => yakus.sort((a, b) => a.han - b.han));
 
 type CardProp = {
   children: React.ReactNode;
   bgcolor?: string;
   color?: string;
   sx?: any;
-}
+};
 
-function MyCard({ children, bgcolor = "primary.main", color = "primary.contrastText", sx }: CardProp) {
-  return (<Paper
-    sx={{
-      pl: 2,
-      pr: 2,
-      minWidth: 40,
-      minHeight: 30,
-      bgcolor,
-      color,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      ...sx
-    }}
-    elevation={3}
-  >
-    <Typography variant="button">{children}</Typography>
-  </Paper>);
+function MyCard({
+  children,
+  bgcolor = "primary.main",
+  color = "primary.contrastText",
+  sx,
+}: CardProp) {
+  return (
+    <Paper
+      sx={{
+        pl: 2,
+        pr: 2,
+        minWidth: 40,
+        minHeight: 30,
+        bgcolor,
+        color,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        ...sx,
+      }}
+      elevation={3}
+    >
+      <Typography variant="button">{children}</Typography>
+    </Paper>
+  );
 }
 
 type YakuListItemProp = {
   yaku: YakuType;
-}
+};
 
+{
+  /* The list item for each yaku */
+}
 function YakuListItem({ yaku }: YakuListItemProp) {
   const [open, setOpen] = React.useState(false);
   return (
@@ -144,55 +110,193 @@ function YakuListItem({ yaku }: YakuListItemProp) {
           <FormattedMessage id={`${yaku.name}.name`} />
         </Typography>
 
-        {yaku.han === yaku.meldedHan + 1 &&
+        {yaku.han === yaku.meldedHan + 1 && (
           <MyCard bgcolor="warning.main" color="warning.contrastText">
-            <FormattedMessage id="yaku.meldedPenalty" defaultMessage="melded-" />
-          </MyCard>}
-        {yaku.meldedHan === -1 &&
+            <FormattedMessage
+              id="yaku.meldedPenalty"
+              defaultMessage="melded-"
+            />
+          </MyCard>
+        )}
+        {yaku.meldedHan === -1 && (
           <MyCard bgcolor="success.main" color="success.contrastText">
-            <FormattedMessage id="yaku.closedHandsOnly" defaultMessage="Closed" />
-          </MyCard>}
+            <FormattedMessage
+              id="yaku.closedHandsOnly"
+              defaultMessage="Closed"
+            />
+          </MyCard>
+        )}
         <MyCard sx={{ ml: 1 }}>
-          {`${yaku.han > 12 ? Array(yaku.han / 13 + 1).join('★') : yaku.han}${yaku.han - 1 === yaku.meldedHan ? '-' : ''}`}
+          {`${yaku.han > 12 ? Array(yaku.han / 13 + 1).join("★") : yaku.han}${
+            yaku.han - 1 === yaku.meldedHan ? "-" : ""
+          }`}
         </MyCard>
       </ListItemButton>
       <Collapse in={open} timeout={50}>
-        <CardContent sx={{ pt: 1, pb: 1, display: 'flex' }}>
-          <Typography sx={{ flexGrow: 1 }} variant="body2" color="text.secondary">
+        <CardContent sx={{ pt: 1, pb: 1, display: "flex" }}>
+          <Typography
+            sx={{ flexGrow: 1 }}
+            variant="body2"
+            color="text.secondary"
+          >
             <FormattedMessage id={`${yaku.name}.description`} />
           </Typography>
         </CardContent>
-        <Box sx={{ display: "flex", m: 1, justifyContent: 'center' }}>{Tiles(yaku.example)}</Box>
+        {yaku.example && (
+          <Box sx={{ display: "flex", m: 1, justifyContent: "center" }}>
+            {Tiles(yaku.example)}
+          </Box>
+        )}
       </Collapse>
     </>
   );
 }
 
+type SortChipProp = {
+  sort: string;
+  setSort: Function;
+  rev: boolean;
+  setRev: Function;
+  defaultRev?: boolean;
+  id: string;
+  defaultMessage: string;
+};
+
+function SortChip({
+  sort,
+  setSort,
+  rev,
+  setRev,
+  id,
+  defaultMessage,
+  defaultRev = false,
+}: SortChipProp) {
+  return (
+    <Chip
+      sx={{ ml: 1 }}
+      label={
+        <Box sx={{ display: "flex", alignItems: "center" }}>
+          <FormattedMessage id={id} defaultMessage={defaultMessage} />
+          <Collapse
+            sx={{ ml: "2px" }}
+            in={sort === id}
+            orientation="horizontal"
+          >
+            <Box sx={{ display: "flex", alignItems: "center" }}>
+              <ArrowDownwardIcon
+                fontSize="inherit"
+                sx={{
+                  transform: rev ? "rotate(0deg)" : "rotate(180deg)",
+                  transition: "transform 0.2s",
+                }}
+              />
+            </Box>
+          </Collapse>
+        </Box>
+      }
+      color="primary"
+      onClick={() => {
+        if (sort !== id) {
+          setSort(id);
+          setRev(defaultRev);
+        } else {
+          setRev(!rev);
+        }
+      }}
+      variant={sort === id ? "filled" : "outlined"}
+    />
+  );
+}
+
+{
+  /* Yaku page component */
+}
 export default function Yaku() {
+  const [sort, setSort] = React.useState("han");
+  const [rev, setRev] = React.useState(false);
+
+  const currmap = sort === "han" ? hanMap : freqMap;
 
   return (
     <Container sx={{ display: "flex", flexDirection: "column", p: 0 }}>
-      {Array.from(hanMap.entries()).filter(([_, yakus]) => yakus.length !== 0).map(([han, yakus]) => {
-        return (
-          <Card sx={{ mb: 2 }} key={han}>
-            <List
-              sx={{ pb: 0 }}
-              subheader={
-                <ListSubheader sx={{ bgcolor: "inherit" }}>
-                  {
-                    han < 13 ?
-                      < FormattedMessage id="yaku.han" defaultMessage="{han} Han" values={{ han }} />
-                      : han === 26 ? < FormattedMessage id="yaku.doubleYakuman" defaultMessage="Double Yakuman" />
-                        : < FormattedMessage id="yaku.yakuman" defaultMessage="Yakuman" />
-                  }
-                </ListSubheader>
-              }
-            >
-              {yakus.map(yaku => <YakuListItem key={yaku.name} yaku={yaku} />)}
-            </List>
-          </Card>
-        )
-      })}
+      <Box
+        sx={{
+          mb: 2,
+          display: "flex",
+          justifyContent: "end",
+          alignItems: "center",
+        }}
+      >
+        {/* Sort By */}
+        <Typography color="text.secondary">
+          <FormattedMessage id="sortby" defaultMessage="Sort By" />
+        </Typography>
+        <SortChip
+          sort={sort}
+          setSort={setSort}
+          rev={rev}
+          setRev={setRev}
+          id="han"
+          defaultMessage="Han"
+        />
+        <SortChip
+          sort={sort}
+          setSort={setSort}
+          rev={rev}
+          setRev={setRev}
+          defaultRev={true}
+          id="frequency"
+          defaultMessage="Frequency"
+        />
+      </Box>
+      {(rev
+        ? Array.from(currmap.entries()).reverse()
+        : Array.from(currmap.entries())
+      )
+        .filter(([_, yakus]) => yakus.length !== 0)
+        .map(([ind, yakus]) => {
+          return (
+            <Card sx={{ mb: 2 }} key={ind}>
+              <List
+                sx={{ pb: 0 }}
+                subheader={
+                  sort === "han" ? (
+                    <ListSubheader sx={{ bgcolor: "inherit" }}>
+                      {ind < 13 ? (
+                        <FormattedMessage
+                          id="yaku.han"
+                          defaultMessage="{han} Han"
+                          values={{ han: ind }}
+                        />
+                      ) : ind === 26 ? (
+                        <FormattedMessage
+                          id="yaku.doubleYakuman"
+                          defaultMessage="Double Yakuman"
+                        />
+                      ) : (
+                        <FormattedMessage
+                          id="yaku.yakuman"
+                          defaultMessage="Yakuman"
+                        />
+                      )}
+                    </ListSubheader>
+                  ) : (
+                    <ListSubheader sx={{ bgcolor: "inherit" }}>
+                      <FormattedMessage
+                        id={`yaku.frequency${ind}`}
+                        defaultMessage={Array(ind + 1).join("★")}
+                      />
+                    </ListSubheader>
+                  )
+                }
+              >
+                {yakus.map((yaku) => (
+                  <YakuListItem key={yaku.name} yaku={yaku} />
+                ))}
+              </List>
+            </Card>
+          );
+        })}
     </Container>
   );
 }
