@@ -182,6 +182,13 @@
     "example": ""
   },
   {
+    "name": "nagashiMangan",
+    "han": 5,
+    "meldedHan": 5,
+    "frequency": 1,
+    "example": ""
+  },
+  {
     "name": "suukantsu",
     "han": 13,
     "meldedHan": 13,
@@ -268,14 +275,14 @@
   {
     "name": "tenhou",
     "han": 13,
-    "meldedHan": 13,
+    "meldedHan": -1,
     "frequency": 1,
     "example": ""
   },
   {
     "name": "chiihou",
     "han": 13,
-    "meldedHan": 13,
+    "meldedHan": -1,
     "frequency": 1,
     "example": ""
   }

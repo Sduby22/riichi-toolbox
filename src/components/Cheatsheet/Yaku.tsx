@@ -126,7 +126,7 @@ function YakuListItem({ yaku }: YakuListItemProp) {
             />
           </MyCard>
         )}
-        <MyCard sx={{ ml: 1 }}>
+        <MyCard sx={{ ml: 1, minWidth: 50 }}>
           {`${yaku.han > 12 ? Array(yaku.han / 13 + 1).join("★") : yaku.han}${
             yaku.han - 1 === yaku.meldedHan ? "-" : ""
           }`}
@@ -256,7 +256,7 @@ export default function Yaku() {
         .filter(([_, yakus]) => yakus.length !== 0)
         .map(([ind, yakus]) => {
           return (
-            <Card sx={{ mb: 2 }} key={ind}>
+            <Card sx={{ mb: 2 }} key={ind} elevation={3}>
               <List
                 sx={{ pb: 0 }}
                 subheader={

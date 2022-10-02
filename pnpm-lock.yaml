@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@emotion/react': ^11.10.4
   '@emotion/styled': ^11.10.4
+  '@formatjs/cli': ^5.1.0
   '@mui/icons-material': ^5.10.6
   '@mui/material': ^5.10.7
   '@types/node': 18.7.16
@@ -33,6 +34,7 @@ dependencies:
   react-swipeable-views: 0.14.0_react@18.2.0
 
 devDependencies:
+  '@formatjs/cli': 5.1.0
   '@types/node': 18.7.16
   '@types/react': 18.0.18
   '@types/react-dom': 18.0.6
@@ -427,6 +429,17 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@formatjs/cli/5.1.0:
+    resolution: {integrity: sha512-9yoRFHgXOgi2oeR4B0Ixz30OBqOsalX1TUkFQBx0r7DyMKPRU5rFCERyeiJsf9MV5DijZ4Nvb/FZBbaJPIo/7Q==}
+    engines: {node: '>= 16.5.0'}
+    hasBin: true
+    peerDependencies:
+      '@vue/compiler-sfc': ^3.2.34
+    peerDependenciesMeta:
+      '@vue/compiler-sfc':
+        optional: true
     dev: true
 
   /@formatjs/ecma402-abstract/1.12.0:
