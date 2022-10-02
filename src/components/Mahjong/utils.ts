@@ -1,10 +1,10 @@
-import { TileType } from "./components/MahjongTileItem";
-import Tile from "./components/MahjongTileItem";
-
 // 5m2 means 2 tiles of 5m
 // 12567m means 1m 2m 5m 6m 7m
 // 23m2 is illegal
 // chun2 is 2 tiles of chun
+
+import assert from "assert";
+
 // 2chun is illegal
 const TILE_PATTERN = /(\d*)([a-z]+)(\d*)/;
 const VALID_TILES = [
@@ -19,6 +19,18 @@ const VALID_TILES = [
   "haku",
   "hatsu",
 ];
+
+// prettier-ignore
+export enum TileType {
+  '1m', '2m', '3m', '4m', '5m', '0m', '6m', '7m', '8m', '9m',
+  '1s', '2s', '3s', '4s', '5s', '0s', '6s', '7s', '8s', '9s',
+  '1p', '2p', '3p', '4p', '5p', '0p', '6p', '7p', '8p', '9p',
+  'ton', 'nan', 'shaa', 'pei', 'haku', 'chun', 'hatsu',
+}
+
+// prettier-ignore
+// '0m' means aka dora
+export type TileStr = keyof typeof TileType;
 
 enum ParseTileErrorType {
   PATTERN_FAILED,
@@ -47,6 +59,7 @@ class ParseTileError extends Error {
   }
 }
 
+// parse segs 123m to [1m, 2m, 3m]
 function parseTileSeg(tileseg: string): TileType[] {
   const match = tileseg.match(TILE_PATTERN);
   if (match === null) {
@@ -79,13 +92,13 @@ function parseTileSeg(tileseg: string): TileType[] {
 
   if (num.length === 0) {
     return Array(count.length > 0 ? parseInt(count) : 1).fill(
-      TileType[tile as keyof typeof TileType]
+      TileType[tile as TileStr]
     );
   } else {
     return num
       .split("")
       .map((n) => {
-        const tilestr = `${n}${tile}` as keyof typeof TileType;
+        const tilestr = `${n}${tile}` as TileStr;
         const tiletype: TileType = TileType[tilestr];
         return Array(count.length > 0 ? parseInt(count) : 1).fill(tiletype);
       })
@@ -93,26 +106,43 @@ function parseTileSeg(tileseg: string): TileType[] {
   }
 }
 
-function tileSort(a: TileType, b: TileType) {
-  return a - b;
-}
+class mahjongTilesError extends Error {
+  type: string;
+  tiles: string;
 
-function parseTiles(tiles: string, maxWidth: number) {
-  const tiles_segs = tiles.replace(/,/g, " ").split(/\s+/);
-  try {
-    const tiles = tiles_segs.map((seg) => parseTileSeg(seg)).flat();
-    tiles.sort(tileSort);
-    return tiles.map((t, ind) => (
-      <Tile variant={t} maxWidth={maxWidth} key={ind} />
-    ));
-  } catch (e) {
-    if (e instanceof ParseTileError) {
-      console.log(e.tile);
-    }
-    throw e;
+  constructor(type: string, tiles: string) {
+    super(type);
+    this.type = type;
+    this.tiles = tiles;
   }
 }
 
-export default function MahjongTiles(tiles: string, maxWidth: number = 50) {
-  return parseTiles(tiles, maxWidth);
+export default function parse_tile_str(
+  tiles: string
+): [hand: TileType[], open: TileType[][] | null, wait: TileType | null] {
+  const str_chunks = tiles.split("|");
+  if (str_chunks.length > 3) {
+    throw new mahjongTilesError("too many chunks", tiles);
+  }
+
+  let tile_chunk = str_chunks.map((chunk) =>
+    chunk
+      .replace(/,/g, " ")
+      .split(/\s+/)
+      .filter((s) => s.length > 0)
+      .map((seg) => parseTileSeg(seg))
+  );
+
+  //  hand                           open                          wait
+  // [[[1m, 2m, 3m], [3m, 4m, 5m]], [[1m, 2m, 3m], [3m, 4m, 5m]], [[1m]]]
+  assert(tile_chunk.length > 0);
+  assert(
+    tile_chunk.length < 3 ||
+      (tile_chunk[2].length === 1 && tile_chunk[2][0].length === 1)
+  );
+  return [
+    tile_chunk[0].flat(),
+    tile_chunk[1] || null,
+    (tile_chunk[2] && tile_chunk[2][0] && tile_chunk[2][0][0]) || null,
+  ];
 }

@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import enMessage from '../lang/en.json';
+import enMessage from "../lang/en.json";
 import type { AppProps } from "next/app";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -9,7 +9,7 @@ import { IntlProvider } from "react-intl";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
-  let locale = 'en-US';
+  let locale = "en-US";
 
   const theme = React.useMemo(
     () =>
@@ -21,20 +21,16 @@ function MyApp({ Component, pageProps }: AppProps) {
     [prefersDarkMode]
   );
 
-  const message = React.useMemo(
-    () => {
-      switch (locale) {
-        default:
-          return enMessage;
-      }
-    },
-    [locale]
-  );
+  const message = React.useMemo(() => {
+    switch (locale) {
+      default:
+        return enMessage;
+    }
+  }, [locale]);
 
   useEffect(() => {
-    locale = localStorage.getItem('locale') || navigator.language;
-    console.log(locale);
-  })
+    locale = localStorage.getItem("locale") || navigator.language;
+  });
 
   return (
     <IntlProvider locale={locale} messages={message}>

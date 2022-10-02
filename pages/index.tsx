@@ -136,7 +136,6 @@ const Page: NextPage = () => {
               value={navValue}
               onChange={(_, newValue) => {
                 setNavValue(newValue);
-                console.log(newValue);
               }}
             >
               <BottomNavigationAction

@@ -4,42 +4,42 @@
     "han": 1,
     "meldedHan": 1,
     "frequency": 5,
-    "example": "234m 406m 678s 345p 88p"
+    "example": "234m 406m 88p 456p | 345s"
   },
   {
     "name": "riichi",
     "han": 1,
     "meldedHan": -1,
     "frequency": 5,
-    "example": "234m 234m 234s 345p chun2"
+    "example": ""
   },
   {
     "name": "ippatsu",
     "han": 1,
     "meldedHan": -1,
     "frequency": 5,
-    "example": "234m 234m 234s 345p chun2"
+    "example": ""
   },
   {
     "name": "pinfu",
     "han": 1,
     "meldedHan": -1,
     "frequency": 5,
-    "example": "234m 340m 234s 345p 99p"
+    "example": "234m 340m 23456s  99p || 4s"
   },
   {
     "name": "tsumo",
     "han": 1,
     "meldedHan": -1,
     "frequency": 5,
-    "example": "234m 340m 234s 345p 99p"
+    "example": ""
   },
   {
     "name": "yakuhai",
     "han": 1,
     "meldedHan": 1,
     "frequency": 5,
-    "example": "234m 340m 234s hatsu3 99p"
+    "example": "234m 340m 234s 9p | hatsu3 | 9p"
   },
   {
     "name": "honitsu",
@@ -67,7 +67,7 @@
     "han": 2,
     "meldedHan": 2,
     "frequency": 3,
-    "example": "1m3 4m3 5s3 8s3 9p2"
+    "example": "1m3 9p2 | 4m3 5s3 8s3"
   },
   {
     "name": "chiitoitsu",
@@ -102,7 +102,7 @@
     "han": 2,
     "meldedHan": 2,
     "frequency": 3,
-    "example": "111m 2m3 4s3 567p ton2"
+    "example": "111m 2m3 4s3 ton2 | 567p"
   },
   {
     "name": "haitei",
@@ -137,7 +137,7 @@
     "han": 2,
     "meldedHan": 2,
     "frequency": 2,
-    "example": "haku3 hatsu3 chun2 123m 345s"
+    "example": "chun2 123m 345s | haku3 hatsu3"
   },
   {
     "name": "rinshan",
@@ -151,7 +151,7 @@
     "han": 2,
     "meldedHan": 2,
     "frequency": 2,
-    "example": "111m 9m3 1p2 9p3 hatsu3"
+    "example": "111m 9m3 1p2 | 9p3 hatsu3"
   },
   {
     "name": "chankan",
@@ -172,14 +172,14 @@
     "han": 2,
     "meldedHan": 2,
     "frequency": 1,
-    "example": "1m3 1p3 1s3 456s shaa2"
+    "example": "1s3 456s shaa2 | 1m3 1p3 "
   },
   {
     "name": "sankantsu",
     "han": 2,
     "meldedHan": 2,
     "frequency": 1,
-    "example": ""
+    "example": "123m 6s2 | 1s4 3p4 9p4"
   },
   {
     "name": "nagashiMangan",
@@ -193,49 +193,49 @@
     "han": 13,
     "meldedHan": 13,
     "frequency": 1,
-    "example": ""
+    "example": "1s2 | shaa4 chun4 9p4 2m4"
   },
   {
     "name": "koukushi",
     "han": 13,
     "meldedHan": -1,
     "frequency": 1,
-    "example": "19m 19s 19p chun2 haku hatsu ton nan shaa pei"
+    "example": "19m 19s 19p haku2 hatsu ton nan shaa pei || chun"
   },
   {
     "name": "koukushi13",
     "han": 26,
     "meldedHan": -1,
     "frequency": 1,
-    "example": "19m 19s 19p chun2 haku hatsu ton nan shaa pei"
+    "example": "19m 19s 19p chun haku hatsu ton nan shaa pei || chun"
   },
   {
     "name": "suuankou",
     "han": 13,
     "meldedHan": -1,
     "frequency": 1,
-    "example": "1m3 4m3 5s3 8s3 9p2"
+    "example": "1m3 4m3 5s3 8s2 9p2 || 8s"
   },
   {
     "name": "suuankouTanki",
     "han": 26,
     "meldedHan": -1,
     "frequency": 1,
-    "example": "1m3 4m3 5s3 8s3 9p2"
+    "example": "1m3 4m3 5s3 8s1 9p3 || 8s"
   },
   {
     "name": "chinroutou",
     "han": 13,
     "meldedHan": 13,
     "frequency": 1,
-    "example": "1m3 1p3 1s3 9s3 9p2"
+    "example": "1m3 1p3 9p2 | 1s3 9s3"
   },
   {
     "name": "shousuushi",
     "han": 13,
     "meldedHan": 13,
     "frequency": 1,
-    "example": "ton3 nan3 shaa3 pei2 999m"
+    "example": "ton3 pei2 nan3 shaa3 999m"
   },
   {
     "name": "daisuushi",
@@ -263,14 +263,14 @@
     "han": 13,
     "meldedHan": -1,
     "frequency": 1,
-    "example": "1112345678999m"
+    "example": "1112345677999m || 8m"
   },
   {
     "name": "chuuren9",
     "han": 26,
     "meldedHan": -1,
     "frequency": 1,
-    "example": "1112345678999m"
+    "example": "1112345678999m || 0m"
   },
   {
     "name": "tenhou",

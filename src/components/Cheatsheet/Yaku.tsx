@@ -1,5 +1,5 @@
 import React from "react";
-import Tiles from "../../MahjongTiles";
+import { Hand } from "../Mahjong";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import yakujson from "./yakus.json";
@@ -14,6 +14,7 @@ import {
   List,
   ListItemButton,
   ListSubheader,
+  NoSsr,
   Paper,
 } from "@mui/material";
 import { FormattedMessage } from "react-intl";
@@ -167,11 +168,17 @@ function YakuListItem({ yaku }: YakuListItemProp) {
             <FormattedMessage id={`${yaku.name}.description`} />
           </Typography>
         </CardContent>
-        {yaku.example && (
-          <Box sx={{ display: "flex", m: 1, justifyContent: "center" }}>
-            {Tiles(yaku.example)}
-          </Box>
-        )}
+        <NoSsr>
+          {yaku.example && (
+            <Box
+              sx={{
+                m: 1,
+              }}
+            >
+              <Hand tiles={yaku.example} />
+            </Box>
+          )}
+        </NoSsr>
       </Collapse>
     </>
   );
