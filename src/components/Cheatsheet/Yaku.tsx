@@ -55,9 +55,23 @@ const YAKUS: YakuType[] = [
     frequency: 4,
     example: "234m 234s 234p 678p 8p2",
   },
+  {
+    name: "daisangen",
+    han: 13,
+    meldedHan: 13,
+    frequency: 1,
+    example: "haku3 chun3 hatsu3 99m 234s"
+  },
+  {
+    name: "daisuushii",
+    han: 26,
+    meldedHan: 26,
+    frequency: 1,
+    example: "ton3 nan3 shaa3 pei3 99m"
+  }
 ];
 
-let hanMap: YakuType[][] = Array(14)
+let hanMap: YakuType[][] = Array(27)
   .fill(0)
   .map(() => []);
 
@@ -118,7 +132,7 @@ function YakuListItem({ yaku }: YakuListItemProp) {
             <FormattedMessage id="yaku.closedHandsOnly" defaultMessage="Closed" />
           </MyCard>}
         <MyCard sx={{ ml: 1 }}>
-          {`${yaku.han}${yaku.han - 1 === yaku.meldedHan ? '-' : ''}`}
+          {`${yaku.han > 12 ? Array(yaku.han / 13 + 1).join('★') : yaku.han}${yaku.han - 1 === yaku.meldedHan ? '-' : ''}`}
         </MyCard>
       </ListItemButton>
       <Collapse in={open} timeout={50}>
@@ -144,8 +158,12 @@ export default function Yaku() {
               sx={{ pb: 0 }}
               subheader={
                 <ListSubheader sx={{ bgcolor: "inherit" }}>
-                  {`${han} `}
-                  <FormattedMessage id="han" defaultMessage="Han" />
+                  {
+                    han < 13 ?
+                      < FormattedMessage id="yaku.han" defaultMessage="{han} Han" values={{ han }} />
+                      : han === 26 ? < FormattedMessage id="yaku.doubleYakuman" defaultMessage="Double Yakuman" />
+                        : < FormattedMessage id="yaku.yakuman" defaultMessage="Yakuman" />
+                  }
                 </ListSubheader>
               }
             >
