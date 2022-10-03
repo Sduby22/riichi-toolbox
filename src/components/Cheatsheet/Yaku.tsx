@@ -14,7 +14,6 @@ import {
   List,
   ListItemButton,
   ListSubheader,
-  NoSsr,
   Paper,
 } from "@mui/material";
 import { FormattedMessage } from "react-intl";
@@ -168,17 +167,15 @@ function YakuListItem_({ yaku }: YakuListItemProp) {
             <FormattedMessage id={`${yaku.name}.description`} />
           </Typography>
         </CardContent>
-        <NoSsr>
-          {yaku.example && (
-            <Box
-              sx={{
-                m: 1,
-              }}
-            >
-              <Hand tiles={yaku.example} />
-            </Box>
-          )}
-        </NoSsr>
+        {yaku.example && (
+          <Box
+            sx={{
+              m: 1,
+            }}
+          >
+            <Hand tiles={yaku.example} />
+          </Box>
+        )}
       </Collapse>
     </>
   );

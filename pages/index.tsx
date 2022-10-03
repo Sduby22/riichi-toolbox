@@ -6,7 +6,6 @@ import {
   Collapse,
   Drawer,
   IconButton,
-  NoSsr,
   Paper,
   Slide,
   Tab,
@@ -131,59 +130,57 @@ const Page: NextPage = () => {
           sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
           elevation={2}
         >
-          <NoSsr>
-            <BottomNavigation
-              value={navValue}
-              onChange={(_, newValue) => {
-                setNavValue(newValue);
-              }}
-            >
-              <BottomNavigationAction
-                value="Cheatsheet"
-                label="Cheatsheet"
-                icon={
-                  <ToggleIcon
-                    onIcon={<DescriptionIcon />}
-                    offIcon={<DescriptionOutlined />}
-                    on={navValue === "Cheatsheet"}
-                  />
-                }
-              />
-              <BottomNavigationAction
-                value="Calculator"
-                label="Calculator"
-                icon={
-                  <ToggleIcon
-                    onIcon={<CalculateIcon />}
-                    offIcon={<CalculateOutlined />}
-                    on={navValue === "Calculator"}
-                  />
-                }
-              />
-              <BottomNavigationAction
-                label="Home"
-                value="Home"
-                icon={
-                  <ToggleIcon
-                    onIcon={<HomeIcon />}
-                    offIcon={<HomeOutlined />}
-                    on={navValue === "Home"}
-                  />
-                }
-              />
-              <BottomNavigationAction
-                value="Others"
-                label="Others"
-                icon={
-                  <ToggleIcon
-                    onIcon={<CategoryIcon />}
-                    offIcon={<CategoryOutlined />}
-                    on={navValue === "Others"}
-                  />
-                }
-              />
-            </BottomNavigation>
-          </NoSsr>
+          <BottomNavigation
+            value={navValue}
+            onChange={(_, newValue) => {
+              setNavValue(newValue);
+            }}
+          >
+            <BottomNavigationAction
+              value="Cheatsheet"
+              label="Cheatsheet"
+              icon={
+                <ToggleIcon
+                  onIcon={<DescriptionIcon />}
+                  offIcon={<DescriptionOutlined />}
+                  on={navValue === "Cheatsheet"}
+                />
+              }
+            />
+            <BottomNavigationAction
+              value="Calculator"
+              label="Calculator"
+              icon={
+                <ToggleIcon
+                  onIcon={<CalculateIcon />}
+                  offIcon={<CalculateOutlined />}
+                  on={navValue === "Calculator"}
+                />
+              }
+            />
+            <BottomNavigationAction
+              label="Home"
+              value="Home"
+              icon={
+                <ToggleIcon
+                  onIcon={<HomeIcon />}
+                  offIcon={<HomeOutlined />}
+                  on={navValue === "Home"}
+                />
+              }
+            />
+            <BottomNavigationAction
+              value="Others"
+              label="Others"
+              icon={
+                <ToggleIcon
+                  onIcon={<CategoryIcon />}
+                  offIcon={<CategoryOutlined />}
+                  on={navValue === "Others"}
+                />
+              }
+            />
+          </BottomNavigation>
         </Paper>
       </Box>
     </>
