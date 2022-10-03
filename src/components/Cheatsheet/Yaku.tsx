@@ -122,7 +122,7 @@ type YakuListItemProp = {
 {
   /* The list item for each yaku */
 }
-function YakuListItem({ yaku }: YakuListItemProp) {
+function YakuListItem_({ yaku }: YakuListItemProp) {
   const [open, setOpen] = React.useState(false);
   return (
     <>
@@ -184,6 +184,8 @@ function YakuListItem({ yaku }: YakuListItemProp) {
   );
 }
 
+const YakuListItem = React.memo(YakuListItem_);
+
 type SortChipProp = {
   sort: string;
   setSort: Function;
@@ -243,7 +245,7 @@ function SortChip({
 {
   /* Yaku page component */
 }
-export default function Yaku() {
+function Yaku() {
   const [sort, setSort] = React.useState("han");
   const [rev, setRev] = React.useState(false);
 
@@ -332,3 +334,5 @@ export default function Yaku() {
     </Container>
   );
 }
+
+export default React.memo(Yaku);

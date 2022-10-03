@@ -1,8 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { TileType, TileStr } from "./utils";
-import { Box, Paper, useTheme } from "@mui/material";
-import { grey, red } from "@mui/material/colors";
+import { Paper, useTheme } from "@mui/material";
+import { grey } from "@mui/material/colors";
 
 export type Props = {
   tile: TileType | TileStr;
@@ -40,6 +40,7 @@ export function Tile({
   }
   const theme = useTheme();
   const color = theme.palette.mode === "light" ? "regular" : "black";
+  console.log(123);
 
   return (
     <div
@@ -96,4 +97,4 @@ export function Tile({
   );
 }
 
-export default Tile;
+export default React.memo(Tile);

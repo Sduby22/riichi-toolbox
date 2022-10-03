@@ -7,7 +7,7 @@ type Props = {
   tiles: string;
 };
 
-export function Hand({ tiles }: Props) {
+export function Hand_({ tiles }: Props) {
   try {
     const [hand, open, wait] = parse_tile_str(tiles);
     return (
@@ -44,3 +44,5 @@ export function Hand({ tiles }: Props) {
     throw e;
   }
 }
+
+export const Hand = React.memo(Hand_);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Props as TileProps, Tile } from "./Tile";
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
   style?: React.CSSProperties;
 };
 
-export default function DoubleTile({ tiles, maxWidth, style }: Props) {
+function DoubleTile_({ tiles, maxWidth, style }: Props) {
   return (
     <div style={{ flexGrow: 4 }}>
       <Tile
@@ -20,3 +20,6 @@ export default function DoubleTile({ tiles, maxWidth, style }: Props) {
     </div>
   );
 }
+
+// export function as pure component named DoubleTile
+export const DoubleTile = memo(DoubleTile_);
