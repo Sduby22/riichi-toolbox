@@ -108,7 +108,7 @@ function MyCard({
         justifyContent: "center",
         ...sx,
       }}
-      elevation={3}
+      elevation={2}
     >
       <Typography variant="button">{children}</Typography>
     </Paper>
@@ -290,7 +290,7 @@ function Yaku() {
         .filter(([_, yakus]) => yakus.length !== 0)
         .map(([ind, yakus]) => {
           return (
-            <Card sx={{ mb: 2 }} key={ind} elevation={3}>
+            <Card sx={{ mb: 2 }} key={ind} elevation={2}>
               <List
                 sx={{ pb: 0 }}
                 subheader={

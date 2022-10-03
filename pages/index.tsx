@@ -35,7 +35,7 @@ import Home from "../src/components/Home";
 import Others from "../src/components/Others";
 
 const Page: NextPage = () => {
-  const [navValue, setNavValue] = useState("Cheatsheet");
+  const [navValue, setNavValue] = useState("Others");
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [tabValue, setTabValue] = useState(0);
 
@@ -129,7 +129,7 @@ const Page: NextPage = () => {
         {/* bottom naviation bar */}
         <Paper
           sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-          elevation={3}
+          elevation={2}
         >
           <NoSsr>
             <BottomNavigation
