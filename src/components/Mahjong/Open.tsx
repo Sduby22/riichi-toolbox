@@ -10,9 +10,10 @@ type Props = {
 };
 
 export function Open({ tiles, variant }: Props) {
-  const vari = variant
-    ? variant
-    : React.useRef(["l", "m", "r"][Math.floor(Math.random() * 3)]).current;
+  const vari = React.useMemo(
+    () => (variant ? variant : ["l", "m", "r"][Math.floor(Math.random() * 3)]),
+    []
+  );
   return tiles.length === 3 ? (
     <ChiPon tiles={tiles} variant={vari as Variants} />
   ) : (

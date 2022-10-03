@@ -23,13 +23,13 @@ export function Hand({ tiles }: Props) {
         {hand
           .sort((a, b) => a - b)
           .map((t, i) => (
-            <Tile variant={t} />
+            <Tile key={i} variant={t} />
           ))}
-        {open?.map((tiles) => (
-          <>
+        {open?.map((tiles, i) => (
+          <React.Fragment key={i}>
             <div style={{ flexGrow: 0.3, maxWidth: 5 }}></div>
             <Open tiles={tiles} />
-          </>
+          </React.Fragment>
         ))}
         {wait && (
           <>
