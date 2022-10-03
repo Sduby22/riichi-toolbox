@@ -7,9 +7,9 @@ type Props = {
   style?: React.CSSProperties;
 };
 
-function DoubleTile_({ tiles, maxWidth, style }: Props) {
+function DoubleTile_({ tiles, maxWidth = 50, style }: Props) {
   return (
-    <div style={{ flexGrow: 4 }}>
+    <div style={{ flexGrow: 4, maxWidth: maxWidth * 1.333 }}>
       <Tile
         tile={tiles[0]}
         rotate={true}
