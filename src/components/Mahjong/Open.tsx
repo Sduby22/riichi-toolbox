@@ -1,4 +1,5 @@
 import React from "react";
+import DoubleTile from "./DoubleTile";
 import Tile from "./Tile";
 import { TileType } from "./utils";
 
@@ -25,9 +26,9 @@ function ChiPon({ tiles, variant }: Props) {
   const [l, m, r] = tiles;
   return (
     <>
-      <Tile rotate={variant === "l"} variant={l} />
-      <Tile rotate={variant === "m"} variant={m} />
-      <Tile rotate={variant === "r"} variant={r} />
+      <Tile rotate={variant === "l"} tile={l} />
+      <Tile rotate={variant === "m"} tile={m} />
+      <Tile rotate={variant === "r"} tile={r} />
     </>
   );
 }
@@ -36,10 +37,17 @@ function Kan({ tiles, variant }: Props) {
   const [l, m1, m2, r] = tiles;
   return (
     <>
-      <Tile rotate={variant === "l"} variant={l} />
-      <Tile rotate={variant === "m"} kanmid={1} variant={m1} />
-      <Tile rotate={variant === "m"} kanmid={2} variant={m2} />
-      <Tile rotate={variant === "r"} variant={r} />
+      <Tile rotate={variant === "l"} tile={l} />
+      {variant === "m" ? (
+        <DoubleTile tiles={[m1, m2]} />
+      ) : (
+        <>
+          <Tile rotate={false} tile={m1} />
+          <Tile rotate={false} tile={m2} />
+        </>
+      )}
+
+      <Tile rotate={variant === "r"} tile={r} />
     </>
   );
 }

@@ -4,12 +4,11 @@ import { TileType, TileStr } from "./utils";
 import { Box, Paper, useTheme } from "@mui/material";
 import { grey, red } from "@mui/material/colors";
 
-type Props = {
-  variant: TileType | TileStr;
+export type Props = {
+  tile: TileType | TileStr;
   maxWidth?: number;
   style?: React.CSSProperties;
   rotate?: boolean;
-  kanmid?: number;
   waiting?: boolean;
 };
 
@@ -26,12 +25,11 @@ const palette = {
   },
 };
 
-function Tile({
-  variant,
+export function Tile({
+  tile: variant,
   maxWidth = 50,
   style = {},
   rotate = false,
-  kanmid = 0,
   waiting = false,
 }: Props) {
   let variantString;
@@ -43,26 +41,18 @@ function Tile({
   const theme = useTheme();
   const color = theme.palette.mode === "light" ? "regular" : "black";
 
-  const widthMul = kanmid ? 0.6667 : 1.3333;
-  const flexGrow = kanmid ? 2 : 4;
-  const inWidth = kanmid ? "150%" : "75%";
-  const moveBase = kanmid ? 0 : -125;
   return (
     <div
       style={{
         ...style,
-        maxWidth: rotate ? maxWidth * widthMul : maxWidth,
-        transform: rotate
-          ? `rotate(90deg) translateX(${moveBase - 150 * (kanmid - 1)}%)
-            ${kanmid ? `translateY(${-80.5 + 53 * kanmid}%)` : ""}
-          `
-          : "",
-        flexGrow: rotate ? flexGrow : 3,
+        maxWidth: (rotate ? 1.3333 : 1) * maxWidth,
+        transform: (style.transform || "") + (rotate ? " translateY(0%)" : ""),
+        flexGrow: rotate ? 4 : 3,
       }}
     >
       <div
         style={{
-          width: rotate ? inWidth : "100%",
+          width: "100%",
         }}
       >
         <div
@@ -70,7 +60,7 @@ function Tile({
             position: "relative",
             width: "100%",
             height: 0,
-            paddingTop: "133.33%",
+            paddingTop: rotate ? "75%" : "133.33%",
           }}
         >
           <Paper
@@ -84,13 +74,14 @@ function Tile({
               // bgcolor: color === "black" ? "#070707" : grey[100],
               bgcolor: waiting ? palette[color].waiting : palette[color].normal,
             }}
-            elevation={2}
+            elevation={3}
           >
             <img
               src={`/tiles/${color}/${variantString}.svg`}
               alt="asdsad"
               style={{
-                width: `${100 * innerSize}%`,
+                transform: rotate ? `rotate(90deg) translateX(0%) ` : "",
+                width: `${100 * innerSize * (rotate ? 0.75 : 1)}%`,
                 left: 0,
                 right: 0,
                 top: 0,

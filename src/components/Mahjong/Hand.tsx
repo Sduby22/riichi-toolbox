@@ -16,6 +16,7 @@ export function Hand({ tiles }: Props) {
           display: "flex",
           width: "100%",
           justifyContent: "center",
+          alignItems: "flex-end",
           gap: 2,
         }}
       >
@@ -23,7 +24,7 @@ export function Hand({ tiles }: Props) {
         {hand
           .sort((a, b) => a - b)
           .map((t, i) => (
-            <Tile key={i} variant={t} />
+            <Tile key={i} tile={t} />
           ))}
         {open?.map((tiles, i) => (
           <React.Fragment key={i}>
@@ -34,7 +35,7 @@ export function Hand({ tiles }: Props) {
         {wait && (
           <>
             <div style={{ flexGrow: 0.6, maxWidth: 5 }}></div>
-            <Tile variant={wait} waiting={true} />
+            <Tile tile={wait} waiting={true} />
           </>
         )}
       </div>
