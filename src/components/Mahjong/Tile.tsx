@@ -40,7 +40,6 @@ export function Tile({
   }
   const theme = useTheme();
   const color = theme.palette.mode === "light" ? "regular" : "black";
-  console.log(123);
 
   return (
     <div
