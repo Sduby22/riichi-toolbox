@@ -40,8 +40,8 @@ function Entry({ children, title }: EntryProp) {
 function Others({}: Props) {
   return (
     <Container sx={{ p: 0, mt: -10, mb: -10 }}>
-      <Paper elevation={2} sx={{ pt: 10, pb: 10, height: "120%" }}>
-        <List sx={{ width: "100%", bgcolor: "background.paper" }}>
+      <Paper elevation={2} sx={{ height: "120%" }}>
+        <List sx={{ pt: 10, pb: 10, width: "100%", bgcolor: "transparent" }}>
           <Entry title="Placeholder">
             <ListItemButton>
               <ListItemIcon>
