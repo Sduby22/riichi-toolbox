@@ -1,7 +1,19 @@
 {
-  "name": "my-app",
+  "name": "riichi-toolbox",
+  "description": "Website of a collection of tools for the Japanese tile game of riichi mahjong",
+  "keywords": [
+    "react",
+    "mahjong",
+    "next-js"
+  ],
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "homepage": "https://github.com/Sduby22/riichi-toolbox",
+  "author": {
+    "name": "Sduby22",
+    "email": "supersduby@gmail.com"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
