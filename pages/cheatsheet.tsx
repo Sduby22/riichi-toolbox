@@ -30,7 +30,7 @@ function Cheatsheet() {
   return (
     <>
       <Title title="Cheatsheet" />
-      <Box sx={{ mt: 13 }}>
+      <Box sx={{ mt: 13, mb: 7 }}>
         <SwipeableViews
           index={state.tabValue}
           onChangeIndex={(val, val2) => {
