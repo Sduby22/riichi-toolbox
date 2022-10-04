@@ -23,31 +23,32 @@ import AppToolBar from "./AppToolBar";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Title from "../Title";
+import { FormattedMessage } from "react-intl";
 
 const navItems = [
   {
-    label: "Cheatsheet",
+    id: "nav.cheatsheet",
     onIcon: <Description />,
     offIcon: <DescriptionOutlined />,
     href: "/cheatsheet",
   },
   {
-    label: "Calculator",
+    id: "nav.calculator",
     onIcon: <Calculate />,
     offIcon: <CalculateOutlined />,
     href: "/calculator",
   },
   {
-    label: "Home",
+    id: "nav.home",
     onIcon: <Home />,
     offIcon: <HomeOutlined />,
     href: "/home",
   },
   {
-    label: "Others",
+    id: "nav.others",
     onIcon: <Category />,
     offIcon: <CategoryOutlined />,
-    href: "/others",
+    href: "/more",
   },
 ];
 
@@ -122,8 +123,8 @@ export default function AppLayout(
             >
               {navItems.map((item, i) => (
                 <BottomNavigationAction
-                  key={item.label}
-                  label={item.label}
+                  key={i}
+                  label={<FormattedMessage id={item.id} />}
                   icon={
                     <ToggleIcon
                       onIcon={item.onIcon}

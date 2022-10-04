@@ -129,7 +129,7 @@ function YakuListItem_({ yaku }: YakuListItemProp) {
       <Divider></Divider>
       <ListItemButton onClick={() => setOpen(!open)}>
         <Typography variant="button" sx={{ flexGrow: 1 }}>
-          <FormattedMessage id={`${yaku.name}.name`} />
+          <FormattedMessage id={`yaku.${yaku.name}.name`} />
         </Typography>
 
         {yaku.han === yaku.meldedHan + 1 && (
