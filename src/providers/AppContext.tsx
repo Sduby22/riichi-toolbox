@@ -1,9 +1,12 @@
-import { createContext, useContext, useReducer } from "react";
+import { useMediaQuery } from "@mui/material";
+import { createContext, useContext, useEffect, useReducer } from "react";
 
 type ActionTypes = {
   "toggle-drawer": undefined;
   "set-title": string;
   "set-tabValue": number;
+  "set-locale": string;
+  "set-darkMode": boolean;
 };
 
 const initialState = {
@@ -11,6 +14,8 @@ const initialState = {
   drawerOpen: false,
   drawerWidth: 240,
   title: "Riichi Toolbox",
+  prefersDarkMode: false,
+  locale: "en-US",
 };
 
 type ActionMap<Actions> = {
@@ -54,6 +59,16 @@ function contextReducer(
         ...state,
         title: action.payload,
       };
+    case "set-darkMode":
+      return {
+        ...state,
+        prefersDarkMode: action.payload,
+      };
+    case "set-locale":
+      return {
+        ...state,
+        locale: action.payload,
+      };
 
     default:
   }
@@ -71,6 +86,16 @@ function useAppContext() {
 
 function ContextProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(contextReducer, initialState);
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+
+  useEffect(() => {
+    const locale = localStorage.getItem("locale") || navigator.language;
+    dispatch({ type: "set-locale", payload: locale });
+  }, []);
+
+  useEffect(() => {
+    dispatch({ type: "set-darkMode", payload: prefersDarkMode });
+  }, [prefersDarkMode]);
 
   return <Provider value={{ state, dispatch }}>{children}</Provider>;
 }

@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import React from "react";
 import { AppProvider } from "../src/providers/AppProvider";
 import type { NextAppProps } from "../src/AppTypes";
+import { ContextProvider } from "../src/providers/AppContext";
 
 function AppShell(props: NextAppProps) {
   const { Component, pageProps } = props;
@@ -19,9 +20,11 @@ function AppShell(props: NextAppProps) {
 
 function MyApp(props: NextAppProps) {
   return (
-    <AppProvider>
-      <AppShell {...props} />
-    </AppProvider>
+    <ContextProvider>
+      <AppProvider>
+        <AppShell {...props} />
+      </AppProvider>
+    </ContextProvider>
   );
 }
 
