@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useEffect } from "react";
 import { useAppContext } from "../providers/AppContext";
 
-export default function Title({ title }: { title: string }) {
+export default function Title({ title }: { title: React.ReactNode }) {
   const { dispatch } = useAppContext();
 
   useEffect(() => {

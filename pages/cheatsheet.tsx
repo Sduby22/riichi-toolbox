@@ -7,6 +7,7 @@ import { Tab, Tabs } from "@mui/material";
 import { useAppContext } from "../src/providers/AppContext";
 import AppLayout from "../src/components/layout/AppLayout";
 import Title from "../src/components/Title";
+import { FormattedMessage } from "react-intl";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -29,7 +30,7 @@ function Cheatsheet() {
 
   return (
     <>
-      <Title title="Cheatsheet" />
+      <Title title={<FormattedMessage id="nav.cheatsheet" />}/>
       <Box sx={{ mt: 13, mb: 7 }}>
         <SwipeableViews
           index={state.tabValue}

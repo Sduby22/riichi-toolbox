@@ -5,14 +5,14 @@ import SettingsContainer, {
 } from "../../src/components/SettingsContainer";
 
 const ENTRY_GROUPS: EntryGroupType = {
-  "others.settings": [
+  "more.settings": [
     {
-      primary: "others.settings",
+      primary: "more.settings",
       icon: <Settings />,
       href: "/settings",
     },
     {
-      primary: "others.info",
+      primary: "more.info",
       icon: <Info />,
       href: "/info",
     },

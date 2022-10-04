@@ -45,7 +45,7 @@ const navItems = [
     href: "/home",
   },
   {
-    id: "nav.others",
+    id: "nav.more",
     onIcon: <Category />,
     offIcon: <CategoryOutlined />,
     href: "/more",
@@ -87,7 +87,7 @@ export default function AppLayout(
 
   return (
     <>
-      <Title title="Riichi Toolbox" />
+      <Title title={<FormattedMessage id="nav.home" />} />
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         {/* AppBar */}
         <AppToolBar tabbar={Component.tabbar} />

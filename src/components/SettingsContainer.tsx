@@ -13,7 +13,6 @@ import {
 import { useRouter } from "next/router";
 import React, { memo } from "react";
 import { FormattedMessage } from "react-intl";
-import Title from "./Title";
 
 type EntryProp = {
   children: React.ReactNode;
@@ -57,7 +56,6 @@ function SettingsContainer({
 
   return (
     <Container sx={{ pt: 10, mt: -10, pl: 0, pr: 0 }}>
-      <Title title="Others" />
       <Paper elevation={2} sx={{ height: "120%" }}>
         <List sx={{ pt: 10, width: "100%", bgcolor: "transparent" }}>
           {Object.entries(entry_groups).map(([group_id, items], ind) => (

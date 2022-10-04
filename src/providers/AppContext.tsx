@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 
 type ActionTypes = {
   "toggle-drawer": undefined;
-  "set-title": string;
+  "set-title": React.ReactNode;
   "set-tabValue": number;
   "set-locale": string;
   "set-darkMode": boolean;
@@ -13,7 +13,7 @@ const initialState = {
   tabValue: 0,
   drawerOpen: false,
   drawerWidth: 240,
-  title: "Riichi Toolbox",
+  title: <p>Riichi Toolbox</p>,
   prefersDarkMode: false,
   locale: "en-US",
 };

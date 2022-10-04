@@ -1,40 +1,47 @@
 import { Info, Settings } from "@mui/icons-material";
 import React from "react";
+import { FormattedMessage } from "react-intl";
 import AppLayout from "../../src/components/layout/AppLayout";
 import SettingsContainer, {
   EntryGroupType,
 } from "../../src/components/SettingsContainer";
+import Title from "../../src/components/Title";
 
 const ENTRY_GROUPS: EntryGroupType = {
-  "others.settings": [
+  "more.settings": [
     {
-      primary: "others.settings",
+      primary: "more.settings",
       icon: <Settings />,
       href: "/settings",
     },
     {
-      primary: "others.info",
+      primary: "more.info",
       icon: <Info />,
       href: "/info",
     },
   ],
-  "others.setting1": [
+  "more.setting1": [
     {
-      primary: "others.settings",
+      primary: "more.settings",
       icon: <Settings />,
       href: "/settings",
     },
     {
-      primary: "others.info",
+      primary: "more.info",
       icon: <Info />,
       href: "/info",
     },
   ],
 };
 
-function Others() {
-  return <SettingsContainer entryGroups={ENTRY_GROUPS} />;
+function More() {
+  return (
+    <>
+      <Title title={<FormattedMessage id="nav.more" defaultMessage="More" />} />
+      <SettingsContainer entryGroups={ENTRY_GROUPS} />
+    </>
+  );
 }
 
-Others.layout = AppLayout;
-export default Others;
+More.layout = AppLayout;
+export default More;
