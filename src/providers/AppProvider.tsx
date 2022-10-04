@@ -1,12 +1,13 @@
 import enMessage from "../../lang/en.json";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect } from "react";
 import { IntlProvider } from "react-intl";
 import { ContextProvider } from "./AppContext";
+import { CssBaseline } from "@mui/material";
 
 function AppProvider({ children }: { children: React.ReactNode }) {
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  let prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   let locale = "en-US";
 
   const theme = React.useMemo(
@@ -28,12 +29,12 @@ function AppProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     locale = localStorage.getItem("locale") || navigator.language;
-    console.log(1);
   });
 
   return (
     <IntlProvider locale={locale} messages={message}>
       <ThemeProvider theme={theme}>
+        <CssBaseline />
         <ContextProvider>{children}</ContextProvider>
       </ThemeProvider>
     </IntlProvider>

@@ -1,24 +1,26 @@
 import "../styles/globals.css";
-import type { AppProps } from "next/app";
-import { NextPage } from "next";
 import React from "react";
 import { AppProvider } from "../src/providers/AppProvider";
+import type { NextAppProps } from "../src/AppTypes";
 
-export type NextApplicationPage<P = {}, IP = P> = NextPage<P, IP> & {
-  layout?: (page: NextApplicationPage, props: any) => JSX.Element;
-};
-
-function MyApp(props: AppProps) {
+function AppShell(props: NextAppProps) {
   const { Component, pageProps } = props;
-  const Component_: NextApplicationPage = Component;
 
   return (
-    <AppProvider>
-      {Component_.layout ? (
-        Component_.layout(Component, pageProps)
+    <>
+      {Component.layout ? (
+        Component.layout(Component, pageProps)
       ) : (
         <Component {...pageProps} />
       )}
+    </>
+  );
+}
+
+function MyApp(props: NextAppProps) {
+  return (
+    <AppProvider>
+      <AppShell {...props} />
     </AppProvider>
   );
 }

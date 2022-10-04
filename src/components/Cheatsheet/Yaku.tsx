@@ -14,6 +14,7 @@ import {
   List,
   ListItemButton,
   ListSubheader,
+  NoSsr,
   Paper,
 } from "@mui/material";
 import { FormattedMessage } from "react-intl";
@@ -173,7 +174,9 @@ function YakuListItem_({ yaku }: YakuListItemProp) {
               m: 1,
             }}
           >
-            <Hand tiles={yaku.example} />
+            <NoSsr>
+              <Hand tiles={yaku.example} />
+            </NoSsr>
           </Box>
         )}
       </Collapse>

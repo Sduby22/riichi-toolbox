@@ -74,7 +74,7 @@ export function Tile({
               // bgcolor: color === "black" ? "#070707" : grey[100],
               bgcolor: waiting ? palette[color].waiting : palette[color].normal,
             }}
-            elevation={3}
+            elevation={2}
           >
             <img
               src={`/tiles/${color}/${variantString}.svg`}

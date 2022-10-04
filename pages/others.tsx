@@ -1,19 +1,19 @@
 import {
   Box,
-  Card,
   Container,
   Divider,
   List,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  ListSubheader,
   Paper,
   Typography,
 } from "@mui/material";
 import { Info, Send, Settings } from "@mui/icons-material";
 import React from "react";
 import { FormattedMessage } from "react-intl";
+import AppLayout from "../src/components/layout/AppLayout";
+import Title from "../src/components/Title";
 
 type Props = {};
 
@@ -39,7 +39,8 @@ function Entry({ children, title }: EntryProp) {
 
 function Others({}: Props) {
   return (
-    <Container sx={{ p: 0, mt: -10, mb: -10 }}>
+    <Container sx={{ pt: 10, mt: -10, mb: -10, pl: 0, pr: 0 }}>
+      <Title title="Others" />
       <Paper elevation={2} sx={{ height: "120%" }}>
         <List sx={{ pt: 10, pb: 10, width: "100%", bgcolor: "transparent" }}>
           <Entry title="Placeholder">
@@ -186,4 +187,5 @@ function Others({}: Props) {
   );
 }
 
-export default React.memo(Others);
+Others.layout = AppLayout;
+export default Others;
