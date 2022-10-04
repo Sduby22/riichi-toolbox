@@ -87,6 +87,7 @@ export function Tile({
                 top: 0,
                 bottom: 0,
                 margin: "auto",
+                shapeRendering: "optimizeSpeed",
               }}
             />
           </Paper>

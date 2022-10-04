@@ -34,7 +34,6 @@ function Cheatsheet() {
         <SwipeableViews
           index={state.tabValue}
           onChangeIndex={(val, val2) => {
-            console.log(val, val2);
             dispatch({ type: "set-tabValue", payload: val });
           }}
         >
