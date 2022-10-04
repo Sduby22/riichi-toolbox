@@ -3,7 +3,7 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 
 type ActionTypes = {
   "toggle-drawer": undefined;
-  "set-title": React.ReactNode;
+  "set-title-message-id": string;
   "set-tabValue": number;
   "set-locale": string;
   "set-darkMode": boolean;
@@ -13,7 +13,7 @@ const initialState = {
   tabValue: 0,
   drawerOpen: false,
   drawerWidth: 240,
-  title: <p>Riichi Toolbox</p>,
+  titleMessageId: "nav.home",
   prefersDarkMode: false,
   locale: "en-US",
 };
@@ -54,10 +54,10 @@ function contextReducer(
         ...state,
         drawerOpen: !state.drawerOpen,
       };
-    case "set-title":
+    case "set-title-message-id":
       return {
         ...state,
-        title: action.payload,
+        titleMessageId: action.payload,
       };
     case "set-darkMode":
       return {

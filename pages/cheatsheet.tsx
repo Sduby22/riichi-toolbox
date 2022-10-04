@@ -30,7 +30,7 @@ function Cheatsheet() {
 
   return (
     <>
-      <Title title={<FormattedMessage id="nav.cheatsheet" />}/>
+      <Title titleId="nav.cheatsheet" />
       <Box sx={{ mt: 13, mb: 7 }}>
         <SwipeableViews
           index={state.tabValue}

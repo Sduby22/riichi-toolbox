@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 const Page: NextPage = () => {
   const router = useRouter();
   useEffect(() => {
-    router.push("/test");
+    router.push("/cheatsheet");
   });
   return <></>;
 };

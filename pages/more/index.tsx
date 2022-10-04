@@ -1,4 +1,5 @@
 import { Info, Settings } from "@mui/icons-material";
+import Head from "next/head";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import AppLayout from "../../src/components/layout/AppLayout";
@@ -37,7 +38,7 @@ const ENTRY_GROUPS: EntryGroupType = {
 function More() {
   return (
     <>
-      <Title title={<FormattedMessage id="nav.more" defaultMessage="More" />} />
+      <Title titleId="nav.more" />
       <SettingsContainer entryGroups={ENTRY_GROUPS} />
     </>
   );

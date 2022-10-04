@@ -8,6 +8,7 @@ import {
   Typography,
   Collapse,
 } from "@mui/material";
+import { FormattedMessage } from "react-intl";
 import { useAppContext } from "../../providers/AppContext";
 
 export default function AppToolBar({ tabbar }: { tabbar?: () => JSX.Element }) {
@@ -31,7 +32,7 @@ export default function AppToolBar({ tabbar }: { tabbar?: () => JSX.Element }) {
             <Menu />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {state.title}
+            <FormattedMessage id={state.titleMessageId} />
           </Typography>
         </Toolbar>
 

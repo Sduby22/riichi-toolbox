@@ -165,7 +165,7 @@ function YakuListItem_({ yaku }: YakuListItemProp) {
             variant="body2"
             color="text.secondary"
           >
-            <FormattedMessage id={`${yaku.name}.description`} />
+            <FormattedMessage id={`yaku.${yaku.name}.description`} />
           </Typography>
         </CardContent>
         {yaku.example && (

@@ -87,7 +87,7 @@ export default function AppLayout(
 
   return (
     <>
-      <Title title={<FormattedMessage id="nav.home" />} />
+      <Title titleId="nav.home" />
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         {/* AppBar */}
         <AppToolBar tabbar={Component.tabbar} />
