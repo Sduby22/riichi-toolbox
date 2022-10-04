@@ -7,7 +7,7 @@ export default function Title({ title }: { title: string }) {
 
   useEffect(() => {
     dispatch({ type: "set-title", payload: title });
-  }, [title]);
+  }, [title, dispatch]);
 
   return (
     <Head>

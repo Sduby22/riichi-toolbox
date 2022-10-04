@@ -1,6 +1,7 @@
 {
   "han": "Han",
   "fu": "Fu",
+  "frequency": "Frequency",
   "sortby": "Sort By",
   "yaku.han": "{han} Han",
   "yaku.closedHandsOnly": "Closed",
@@ -95,5 +96,8 @@
   "tenhou.name": "Tenhou",
   "tenhou.description": "Win on your opening hand or ﬁrst draw. Calls invalidate (Oya)",
   "chiihou.name": "Chiihou",
-  "chiihou.description": "Win on your opening hand or ﬁrst draw. Calls invalidate (Ko)"
+  "chiihou.description": "Win on your opening hand or ﬁrst draw. Calls invalidate (Ko)",
+
+  "more.info": "Info",
+  "more.settings": "Settings"
 }

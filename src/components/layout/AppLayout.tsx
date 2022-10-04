@@ -78,7 +78,7 @@ export default function AppLayout(
     if (currSelected !== -1) {
       setSelected(currSelected);
     }
-  }, [router.asPath, navItems]);
+  }, [router.asPath]);
 
   const handleDrawerToggle = () => {
     dispatch({ type: "toggle-drawer" });

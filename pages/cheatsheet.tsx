@@ -51,7 +51,7 @@ function Cheatsheet() {
 }
 
 Cheatsheet.layout = AppLayout;
-Cheatsheet.tabbar = () => {
+function Tabbar() {
   const { state, dispatch } = useAppContext();
 
   return (
@@ -68,6 +68,7 @@ Cheatsheet.tabbar = () => {
       <Tab label="Fu List" />
     </Tabs>
   );
-};
+}
 
+Cheatsheet.tabbar = Tabbar;
 export default Cheatsheet;
