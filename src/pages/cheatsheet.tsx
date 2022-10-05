@@ -6,6 +6,7 @@ import Fu from "../components/Cheatsheet/Fu";
 import { Tab, Tabs } from "@mui/material";
 import { useAppContext } from "../providers/AppContext";
 import Title from "../components/Title";
+import { FormattedMessage } from "react-intl";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -25,8 +26,14 @@ function Tabbar() {
       textColor="inherit"
       variant="fullWidth"
     >
-      <Tab label="Yaku List" />
-      <Tab label="Fu List" />
+      <Tab
+        label={
+          <FormattedMessage id="yaku.yakuList" defaultMessage={"Yaku List"} />
+        }
+      />
+      <Tab
+        label={<FormattedMessage id="yaku.fuList" defaultMessage={"Fu List"} />}
+      />
     </Tabs>
   );
 }

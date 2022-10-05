@@ -1,23 +1,15 @@
 import enMessage from "../../lang/en.json";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IntlProvider } from "react-intl";
 import { useAppContext } from "./AppContext";
 import { CssBaseline } from "@mui/material";
 
-const messages: {
-  [key: string]: Record<string, string>;
-} = {
-  ["en"]: enMessage,
-};
-
-function getMessage(locale: string) {
+function getMessage(
+  locale: string
+): Promise<{ default: Record<string, string> }> {
   const lang = locale.split("-")[0];
-  if (lang in messages) {
-    return messages[lang];
-  } else {
-    return enMessage;
-  }
+  return import("/lang/" + lang + ".json");
 }
 
 function AppShell({ children }: { children: React.ReactNode }) {
@@ -26,6 +18,15 @@ function AppShell({ children }: { children: React.ReactNode }) {
 
 function AppProvider({ children }: { children: React.ReactNode }) {
   const { state } = useAppContext();
+  const [message, setMessage] = useState(enMessage as Record<string, string>);
+  useEffect(() => {
+    getMessage(state.locale).then((e) => {
+      setMessage({
+        ...enMessage,
+        ...e.default,
+      });
+    });
+  }, [state.locale]);
 
   const theme = React.useMemo(
     () =>
@@ -41,7 +42,7 @@ function AppProvider({ children }: { children: React.ReactNode }) {
     <IntlProvider
       locale={state.locale}
       defaultLocale="en-US"
-      messages={getMessage(state.locale)}
+      messages={message}
     >
       <ThemeProvider theme={theme}>
         <CssBaseline />
