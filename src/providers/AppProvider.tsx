@@ -9,7 +9,11 @@ function getMessage(
   locale: string
 ): Promise<{ default: Record<string, string> }> {
   const lang = locale.split("-")[0];
-  return import("/lang/" + lang + ".json");
+
+  return import(
+    /* @vite-ignore */
+    "/lang/" + lang + ".json"
+  );
 }
 
 function AppShell({ children }: { children: React.ReactNode }) {
