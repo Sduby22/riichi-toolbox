@@ -1,4 +1,4 @@
-import { memo, PureComponent, useMemo } from "react";
+import { memo, PureComponent } from "react";
 import { DoubleTile } from "./DoubleTile";
 import Tile from "./Tile";
 import { TileType } from "./utils";
@@ -19,7 +19,7 @@ export default class Open extends PureComponent<Props> {
       : ["l", "m", "r"][Math.floor(Math.random() * 3)];
   }
   render() {
-    const { tiles, variant } = this.props;
+    const { tiles } = this.props;
     return tiles.length === 3 ? (
       <ChiPon tiles={tiles} variant={this.vari as Variants} />
     ) : (

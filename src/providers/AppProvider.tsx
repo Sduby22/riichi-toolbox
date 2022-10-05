@@ -6,7 +6,7 @@ import { useAppContext } from "./AppContext";
 import { CssBaseline } from "@mui/material";
 
 const messages: {
-  [key: string]: {};
+  [key: string]: Record<string, string>;
 } = {
   ["en"]: enMessage,
 };
@@ -20,8 +20,12 @@ function getMessage(locale: string) {
   }
 }
 
+function AppShell({ children }: { children: React.ReactNode }) {
+  return <AppProvider>{children}</AppProvider>;
+}
+
 function AppProvider({ children }: { children: React.ReactNode }) {
-  const { state, dispatch } = useAppContext();
+  const { state } = useAppContext();
 
   const theme = React.useMemo(
     () =>
@@ -47,4 +51,4 @@ function AppProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-export { AppProvider };
+export default AppShell;

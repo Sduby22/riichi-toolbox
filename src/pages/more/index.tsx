@@ -1,36 +1,32 @@
 import { Info, Settings } from "@mui/icons-material";
-import Head from "next/head";
-import React from "react";
-import { FormattedMessage } from "react-intl";
-import AppLayout from "../../src/components/layout/AppLayout";
 import SettingsContainer, {
   EntryGroupType,
-} from "../../src/components/SettingsContainer";
-import Title from "../../src/components/Title";
+} from "../../components/SettingsContainer";
+import Title from "../../components/Title";
 
 const ENTRY_GROUPS: EntryGroupType = {
   "more.settings": [
     {
       primary: "more.settings",
       icon: <Settings />,
-      href: "/settings",
+      href: "settings",
     },
     {
       primary: "more.info",
       icon: <Info />,
-      href: "/info",
+      href: "info",
     },
   ],
   "more.setting1": [
     {
       primary: "more.settings",
       icon: <Settings />,
-      href: "/settings",
+      href: "settings",
     },
     {
       primary: "more.info",
       icon: <Info />,
-      href: "/info",
+      href: "info",
     },
   ],
 };
@@ -44,5 +40,4 @@ function More() {
   );
 }
 
-More.layout = AppLayout;
 export default More;

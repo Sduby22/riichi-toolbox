@@ -1,3 +1,4 @@
+import React from "react";
 import { Paper } from "@mui/material";
 
 function Foo() {
@@ -33,15 +34,6 @@ export default function Fu() {
         <Foo />
         <Foo />
       </div>
-
-      <style jsx>
-        {`
-          .foo {
-            width: 100%;
-            margin: 4px;
-          }
-        `}
-      </style>
     </>
   );
 }

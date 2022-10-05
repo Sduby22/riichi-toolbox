@@ -1,3 +1,4 @@
+import React from "react";
 import { useMediaQuery } from "@mui/material";
 import { createContext, useContext, useEffect, useReducer } from "react";
 
@@ -5,12 +6,14 @@ type ActionTypes = {
   "toggle-drawer": undefined;
   "set-title-message-id": string;
   "set-tabValue": number;
+  "set-tabbar": JSX.Element;
   "set-locale": string;
   "set-darkMode": boolean;
 };
 
 const initialState = {
   tabValue: 0,
+  tabbar: <></>,
   drawerOpen: false,
   drawerWidth: 240,
   titleMessageId: "nav.home",
@@ -37,7 +40,7 @@ type AppContextType = {
 };
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
-const { Provider, Consumer } = AppContext;
+const { Provider } = AppContext;
 
 function contextReducer(
   state: typeof initialState,
@@ -68,6 +71,11 @@ function contextReducer(
       return {
         ...state,
         locale: action.payload,
+      };
+    case "set-tabbar":
+      return {
+        ...state,
+        tabbar: action.payload,
       };
 
     default:

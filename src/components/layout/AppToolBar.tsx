@@ -6,13 +6,13 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  Collapse,
 } from "@mui/material";
 import { FormattedMessage } from "react-intl";
 import { useAppContext } from "../../providers/AppContext";
 
-export default function AppToolBar({ tabbar }: { tabbar?: () => JSX.Element }) {
+export default function AppToolBar({ tabbar }: { tabbar?: JSX.Element }) {
   const { state, dispatch } = useAppContext();
+
   const handleDrawerToggle = () => {
     dispatch({ type: "toggle-drawer" });
   };
@@ -36,9 +36,7 @@ export default function AppToolBar({ tabbar }: { tabbar?: () => JSX.Element }) {
           </Typography>
         </Toolbar>
 
-        <Collapse in={tabbar !== undefined} timeout={50}>
-          {tabbar && tabbar()}
-        </Collapse>
+        {tabbar}
       </AppBar>
     </Slide>
   );

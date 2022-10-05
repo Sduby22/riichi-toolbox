@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { TileType, TileStr } from "./utils";
 import { Paper, useTheme } from "@mui/material";

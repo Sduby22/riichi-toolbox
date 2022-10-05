@@ -10,9 +10,9 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { useRouter } from "next/router";
 import React, { memo } from "react";
 import { FormattedMessage } from "react-intl";
+import { useNavigate } from "react-router-dom";
 
 type EntryProp = {
   children: React.ReactNode;
@@ -50,9 +50,9 @@ function SettingsContainer({
 }: {
   entryGroups: EntryGroupType;
 }) {
+  const navigate = useNavigate();
   const theme = useTheme();
   theme.components?.MuiAppBar?.defaultProps;
-  const router = useRouter();
 
   return (
     <Container sx={{ pt: 10, mt: -10, pl: 0, pr: 0 }}>
@@ -66,7 +66,7 @@ function SettingsContainer({
                   <ListItemButton
                     key={ind}
                     onClick={() => {
-                      router.push(router.asPath + item.href);
+                      navigate(item.href);
                     }}
                   >
                     <ListItemIcon>{item.icon}</ListItemIcon>

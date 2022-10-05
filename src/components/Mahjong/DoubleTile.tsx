@@ -4,10 +4,9 @@ import { Props as TileProps, Tile } from "./Tile";
 type Props = {
   tiles: TileProps["tile"][];
   maxWidth?: number;
-  style?: React.CSSProperties;
 };
 
-function DoubleTile_({ tiles, maxWidth = 50, style }: Props) {
+function DoubleTile_({ tiles, maxWidth = 50 }: Props) {
   return (
     <div style={{ flexGrow: 4, maxWidth: maxWidth * 1.333 }}>
       <Tile

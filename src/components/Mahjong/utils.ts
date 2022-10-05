@@ -3,8 +3,6 @@
 // 23m2 is illegal
 // chun2 is 2 tiles of chun
 
-import assert from "assert";
-
 // 2chun is illegal
 const TILE_PATTERN = /(\d*)([a-z]+)(\d*)/;
 const VALID_TILES = [
@@ -66,7 +64,7 @@ function parseTileSeg(tileseg: string): TileType[] {
     throw new ParseTileError(ParseTileErrorType.PATTERN_FAILED, "", "", "");
   }
   const [, num, tile, count] = match;
-  let tileIndex = VALID_TILES.indexOf(tile);
+  const tileIndex = VALID_TILES.indexOf(tile);
   if (tileIndex === -1) {
     throw new ParseTileError(
       ParseTileErrorType.TILE_NOT_FOUND,
@@ -125,7 +123,7 @@ export default function parse_tile_str(
     throw new mahjongTilesError("too many chunks", tiles);
   }
 
-  let tile_chunk = str_chunks.map((chunk) =>
+  const tile_chunk = str_chunks.map((chunk) =>
     chunk
       .replace(/,/g, " ")
       .split(/\s+/)
@@ -135,11 +133,6 @@ export default function parse_tile_str(
 
   //  hand                           open                          wait
   // [[[1m, 2m, 3m], [3m, 4m, 5m]], [[1m, 2m, 3m], [3m, 4m, 5m]], [[1m]]]
-  assert(tile_chunk.length > 0);
-  assert(
-    tile_chunk.length < 3 ||
-      (tile_chunk[2].length === 1 && tile_chunk[2][0].length === 1)
-  );
   return [
     tile_chunk[0].flat(),
     tile_chunk[1] || null,

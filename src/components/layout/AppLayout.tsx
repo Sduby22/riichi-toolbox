@@ -17,13 +17,12 @@ import {
   BottomNavigationAction,
 } from "@mui/material";
 import ToggleIcon from "material-ui-toggle-icon";
-import type { NextApplicationPage, NextAppProps } from "../../AppTypes";
 import { useAppContext } from "../../providers/AppContext";
 import AppToolBar from "./AppToolBar";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Title from "../Title";
 import { FormattedMessage } from "react-intl";
+import { useLocation, useNavigate, Outlet } from "react-router-dom";
 
 const navItems = [
   {
@@ -62,24 +61,22 @@ function getSelected(path: string, paths: string[]) {
   return -1;
 }
 
-export default function AppLayout(
-  Component: NextApplicationPage,
-  pageProps: {}
-) {
+export default function AppLayout() {
   const { state, dispatch } = useAppContext();
   const [selected, setSelected] = useState(-1);
-  const router = useRouter();
+  const loc = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const currSelected = getSelected(
-      router.asPath,
+      loc.pathname,
       navItems.map((item) => item.href)
     );
 
     if (currSelected !== -1) {
       setSelected(currSelected);
     }
-  }, [router.asPath]);
+  }, [loc.pathname]);
 
   const handleDrawerToggle = () => {
     dispatch({ type: "toggle-drawer" });
@@ -90,7 +87,7 @@ export default function AppLayout(
       <Title titleId="nav.home" />
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         {/* AppBar */}
-        <AppToolBar tabbar={Component.tabbar} />
+        <AppToolBar tabbar={state.tabbar} />
         <Drawer
           variant="temporary"
           open={state.drawerOpen}
@@ -106,7 +103,7 @@ export default function AppLayout(
           }}
         ></Drawer>
 
-        <Component {...pageProps}></Component>
+        <Outlet />
 
         {/* bottom naviation bar */}
         <Paper
@@ -118,7 +115,7 @@ export default function AppLayout(
               value={selected}
               onChange={(_, val) => {
                 setSelected(selected);
-                router.push(navItems[val].href);
+                navigate(navItems[val].href);
               }}
             >
               {navItems.map((item, i) => (

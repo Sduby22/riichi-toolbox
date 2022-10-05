@@ -16,6 +16,7 @@ import {
   ListSubheader,
   NoSsr,
   Paper,
+  SxProps,
 } from "@mui/material";
 import { FormattedMessage } from "react-intl";
 
@@ -29,11 +30,11 @@ interface YakuType {
 
 const YAKUS = yakujson as YakuType[];
 
-let hanMap: YakuType[][] = Array(27)
+const hanMap: YakuType[][] = Array(27)
   .fill(0)
   .map(() => []);
 
-let freqMap: YakuType[][] = Array(6)
+const freqMap: YakuType[][] = Array(6)
   .fill(0)
   .map(() => []);
 
@@ -85,7 +86,7 @@ type CardProp = {
   children: React.ReactNode;
   bgcolor?: string;
   color?: string;
-  sx?: any;
+  sx?: SxProps;
 };
 
 function MyCard({
@@ -188,9 +189,9 @@ const YakuListItem = React.memo(YakuListItem_);
 
 type SortChipProp = {
   sort: string;
-  setSort: Function;
+  setSort: (sort: string) => void;
   rev: boolean;
-  setRev: Function;
+  setRev: (rev: boolean) => void;
   defaultRev?: boolean;
   id: string;
   defaultMessage: string;
