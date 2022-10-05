@@ -5,15 +5,10 @@ import { IntlProvider } from "react-intl";
 import { useAppContext } from "./AppContext";
 import { CssBaseline } from "@mui/material";
 
-function getMessage(
-  locale: string
-): Promise<{ default: Record<string, string> }> {
+function getMessage(locale: string) {
   const lang = locale.split("-")[0];
 
-  return import(
-    /* @vite-ignore */
-    "/lang/" + lang + ".json"
-  );
+  return fetch("/lang/" + lang + ".json").then((r) => r.json());
 }
 
 function AppShell({ children }: { children: React.ReactNode }) {
@@ -27,7 +22,7 @@ function AppProvider({ children }: { children: React.ReactNode }) {
     getMessage(state.locale).then((e) => {
       setMessage({
         ...enMessage,
-        ...e.default,
+        ...e,
       });
     });
   }, [state.locale]);
