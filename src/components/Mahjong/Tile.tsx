@@ -9,6 +9,9 @@ export type Props = {
   style?: React.CSSProperties;
   rotate?: boolean;
   waiting?: boolean;
+  hover?: boolean;
+  onMouseOver?: (e: React.MouseEvent) => void;
+  onMouseLeave?: (e: React.MouseEvent) => void;
 };
 
 const innerSize = 0.8;
@@ -30,6 +33,9 @@ export function Tile({
   style = {},
   rotate = false,
   waiting = false,
+  hover = false,
+  onMouseOver,
+  onMouseLeave,
 }: Props) {
   let variantString;
   if (typeof variant !== "string") {
@@ -45,13 +51,16 @@ export function Tile({
       style={{
         ...style,
         maxWidth: (rotate ? 1.3333 : 1) * maxWidth,
-        transform: (style.transform || "") + (rotate ? " translateY(0%)" : ""),
         flexGrow: rotate ? 4 : 3,
       }}
+      onMouseOver={onMouseOver}
+      onMouseLeave={onMouseLeave}
     >
       <div
         style={{
           width: "100%",
+          transform: hover ? " translateY(-50%)" : "",
+          transition: "transform cubic-bezier(0.4, 0, 0.2, 1) 0.1s",
         }}
       >
         <div

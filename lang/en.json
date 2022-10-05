@@ -3,14 +3,18 @@
   "fu": "Fu",
   "frequency": "Frequency",
   "sortby": "Sort By",
+  "title": "Riichi Toolbox",
 
   "nav.cheatsheet": "Cheatsheet",
   "nav.calculator": "Calculator",
-  "nav.home": "Riichi Toolbox",
+  "nav.home": "Home",
   "nav.more": "More",
 
   "more.info": "Info",
   "more.settings": "Settings",
+
+  "calculator.whichToDiscard.header": "Which to Discard?",
+  "calculator.whichToDiscard.content": "Given a hand of tiles, calculates the optimal discard to maximize your chances of winning.",
 
   "yaku.yakuList": "Yaku List",
   "yaku.fuList": "Fu List",

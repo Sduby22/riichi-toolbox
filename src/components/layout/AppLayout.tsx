@@ -10,7 +10,6 @@ import {
 } from "@mui/icons-material";
 import {
   Box,
-  NoSsr,
   Drawer,
   Paper,
   BottomNavigation,
@@ -84,7 +83,7 @@ export default function AppLayout() {
 
   return (
     <>
-      <Title titleId="nav.home" />
+      <Title titleId="title" />
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         {/* AppBar */}
         <AppToolBar tabbar={state.tabbar} />
@@ -107,32 +106,32 @@ export default function AppLayout() {
 
         {/* bottom naviation bar */}
         <Paper
-          sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+          sx={{ zIndex: 999, position: "fixed", bottom: 0, left: 0, right: 0 }}
           elevation={2}
         >
-          <NoSsr>
-            <BottomNavigation
-              value={selected}
-              onChange={(_, val) => {
+          <BottomNavigation
+            value={selected}
+            onChange={(_, val) => {
+              if (val !== selected) {
                 setSelected(selected);
                 navigate(navItems[val].href);
-              }}
-            >
-              {navItems.map((item, i) => (
-                <BottomNavigationAction
-                  key={i}
-                  label={<FormattedMessage id={item.id} />}
-                  icon={
-                    <ToggleIcon
-                      onIcon={item.onIcon}
-                      offIcon={item.offIcon}
-                      on={selected === i}
-                    />
-                  }
-                />
-              ))}
-            </BottomNavigation>
-          </NoSsr>
+              }
+            }}
+          >
+            {navItems.map((item, i) => (
+              <BottomNavigationAction
+                key={i}
+                label={<FormattedMessage id={item.id} />}
+                icon={
+                  <ToggleIcon
+                    onIcon={item.onIcon}
+                    offIcon={item.offIcon}
+                    on={selected === i}
+                  />
+                }
+              />
+            ))}
+          </BottomNavigation>
         </Paper>
       </Box>
     </>

@@ -71,9 +71,11 @@ function SettingsContainer({
                   >
                     <ListItemIcon>{item.icon}</ListItemIcon>
                     <ListItemText
-                      primary={<FormattedMessage id={group_id} />}
+                      primary={<FormattedMessage id={item.primary} />}
                       secondary={
-                        item.secondary && <FormattedMessage id={group_id} />
+                        item.secondary && (
+                          <FormattedMessage id={item.secondary} />
+                        )
                       }
                     />
                   </ListItemButton>

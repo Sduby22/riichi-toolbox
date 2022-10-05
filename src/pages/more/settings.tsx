@@ -1,8 +1,7 @@
-import { Info, Settings } from "@mui/icons-material";
+import { Settings, Info } from "@mui/icons-material";
 import SettingsContainer, {
   EntryGroupType,
 } from "../../components/SettingsContainer";
-import Title from "../../components/Title";
 
 const ENTRY_GROUPS: EntryGroupType = {
   "more.settings": [
@@ -19,13 +18,6 @@ const ENTRY_GROUPS: EntryGroupType = {
   ],
 };
 
-function More() {
-  return (
-    <>
-      <Title titleId="nav.more" />
-      <SettingsContainer entryGroups={ENTRY_GROUPS} />
-    </>
-  );
+export default function SettingsPage() {
+  return <SettingsContainer entryGroups={ENTRY_GROUPS} />;
 }
-
-export default More;

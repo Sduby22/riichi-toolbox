@@ -16,7 +16,7 @@ const initialState = {
   tabbar: <></>,
   drawerOpen: false,
   drawerWidth: 240,
-  titleMessageId: "nav.home",
+  titleMessageId: "title",
   prefersDarkMode: false,
   locale: "en-US",
 };
