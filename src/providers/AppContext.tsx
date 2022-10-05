@@ -99,7 +99,7 @@ function ContextProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const locale = localStorage.getItem("locale") || navigator.language;
     dispatch({ type: "set-locale", payload: locale });
-  }, []);
+  }, [navigator.language]);
 
   useEffect(() => {
     dispatch({ type: "set-darkMode", payload: prefersDarkMode });
