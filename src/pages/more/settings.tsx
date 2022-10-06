@@ -52,7 +52,7 @@ export default function SettingsPage() {
   const auto = getTranslationOrSelf("more.settings.lang.auto");
   LANGUAGES[auto] = undefined;
   let currlang;
-  if (localStorage.getItem("locale") === undefined) {
+  if (localStorage.getItem("locale") === null) {
     currlang = auto;
   } else {
     currlang = getLangString(state.locale);
@@ -62,7 +62,9 @@ export default function SettingsPage() {
     "more.settings": [
       {
         primary: <FormattedMessage id="more.settings.lang" />,
-        secondary: `${currlang}`,
+        secondary: `${
+          currlang === auto ? getLangString(state.locale) : currlang
+        }`,
         icon: <Language />,
         onClick: handleLangOpen,
       },
