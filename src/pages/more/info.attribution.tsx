@@ -1,8 +1,7 @@
 import { Brush } from "@mui/icons-material";
 import React from "react";
-import SettingsContainer, {
-  EntryGroupType,
-} from "../../components/Settings/SettingsContainer";
+import { EntryGroupType } from "../../components/Settings/Entry";
+import SettingsContainer from "../../components/Settings/SettingsContainer";
 import Title from "../../components/Title";
 
 const ATTR: EntryGroupType = {

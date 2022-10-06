@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Hand } from "../Mahjong";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";

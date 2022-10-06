@@ -1,9 +1,7 @@
 import { Attribution, Copyright, GitHub } from "@mui/icons-material";
-import { useState } from "react";
 import { FormattedMessage } from "react-intl";
-import SettingsContainer, {
-  EntryGroupType,
-} from "../../components/Settings/SettingsContainer";
+import { EntryGroupType } from "../../components/Settings/Entry";
+import SettingsContainer from "../../components/Settings/SettingsContainer";
 import Title from "../../components/Title";
 
 export default function Page() {

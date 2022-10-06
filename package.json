@@ -17,6 +17,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "lint": "tsc; eslint src --ext .ts,.tsx",
     "extract": "formatjs extract",
     "compile": "formatjs compile"
   },
