@@ -24,10 +24,11 @@ export type EntryGroupType = {
 };
 
 type EntryItem = {
-  primary: string;
-  secondary?: string;
+  primary?: React.ReactNode;
+  secondary?: React.ReactNode;
   icon: React.ReactNode;
-  href: string;
+  href?: string;
+  onClick?: () => void;
 };
 
 function Entry({ children, title }: EntryProp) {
@@ -45,12 +46,28 @@ function Entry({ children, title }: EntryProp) {
   );
 }
 
+function LinkEntry({ item }: { item: EntryItem }): JSX.Element {
+  const navigate = useNavigate();
+  item.onClick = () => {
+    navigate(item.href || "");
+  };
+  return <ListEntry item={item} />;
+}
+
+function ListEntry({ item }: { item: EntryItem }): JSX.Element {
+  return (
+    <ListItemButton onClick={item.onClick}>
+      <ListItemIcon>{item.icon}</ListItemIcon>
+      <ListItemText primary={item.primary} secondary={item.secondary} />
+    </ListItemButton>
+  );
+}
+
 function SettingsContainer({
   entryGroups: entry_groups,
 }: {
   entryGroups: EntryGroupType;
 }) {
-  const navigate = useNavigate();
   const theme = useTheme();
   theme.components?.MuiAppBar?.defaultProps;
 
@@ -62,24 +79,13 @@ function SettingsContainer({
             <React.Fragment key={ind}>
               {ind !== 0 && <Divider variant="fullWidth" />}
               <Entry title={<FormattedMessage id={group_id} />}>
-                {items.map((item, ind) => (
-                  <ListItemButton
-                    key={ind}
-                    onClick={() => {
-                      navigate(item.href);
-                    }}
-                  >
-                    <ListItemIcon>{item.icon}</ListItemIcon>
-                    <ListItemText
-                      primary={<FormattedMessage id={item.primary} />}
-                      secondary={
-                        item.secondary && (
-                          <FormattedMessage id={item.secondary} />
-                        )
-                      }
-                    />
-                  </ListItemButton>
-                ))}
+                {items.map((item, ind) =>
+                  item.href ? (
+                    <LinkEntry item={item} key={ind} />
+                  ) : (
+                    <ListEntry item={item} key={ind} />
+                  )
+                )}
               </Entry>
             </React.Fragment>
           ))}

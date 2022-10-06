@@ -7,7 +7,7 @@ type ActionTypes = {
   "set-title-message-id": string;
   "set-tabValue": number;
   "set-tabbar": JSX.Element;
-  "set-locale": string;
+  "set-locale": string | undefined;
   "set-darkMode": boolean;
 };
 
@@ -70,7 +70,7 @@ function contextReducer(
     case "set-locale":
       return {
         ...state,
-        locale: action.payload,
+        locale: action.payload || "en-US",
       };
     case "set-tabbar":
       return {

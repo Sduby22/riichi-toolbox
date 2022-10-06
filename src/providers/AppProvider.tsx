@@ -1,7 +1,7 @@
 import enMessage from "../../lang/en.json";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import React, { useEffect, useState } from "react";
-import { IntlProvider } from "react-intl";
+import { IntlProvider, useIntl } from "react-intl";
 import { useAppContext } from "./AppContext";
 import { CssBaseline } from "@mui/material";
 
@@ -9,6 +9,11 @@ function getMessage(locale: string) {
   const lang = locale.split("-")[0];
 
   return fetch("/lang/" + lang + ".json").then((r) => r.json());
+}
+
+export function getTranslationOrSelf(text: string) {
+  const intl = useIntl();
+  return intl.formatMessage({ id: text, defaultMessage: text });
 }
 
 function AppShell({ children }: { children: React.ReactNode }) {

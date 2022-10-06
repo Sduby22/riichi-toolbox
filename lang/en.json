@@ -12,6 +12,8 @@
 
   "more.info": "Info",
   "more.settings": "Settings",
+  "more.settings.lang": "Language",
+  "more.settings.lang.auto": "Auto Detect",
 
   "calculator.whichToDiscard.header": "Which to Discard?",
   "calculator.whichToDiscard.content": "Given a hand of tiles, calculates the optimal discard to maximize your chances of winning.",
