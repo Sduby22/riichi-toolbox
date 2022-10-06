@@ -35,6 +35,9 @@ export default function Dialogue({
       maxWidth="xs"
       // TransitionProps={{ onEntering: handleEntering }}
       open={open}
+      onClose={() => {
+        onClose();
+      }}
       // {...other}
     >
       <DialogTitle>
