@@ -104,7 +104,7 @@ export default function SettingsPage() {
   return (
     <>
       <Title titleId="more.settings" />
-      <SettingsContainer entryGroups={ENTRY_GROUPS} />;
+      <SettingsContainer entryGroups={ENTRY_GROUPS} />
     </>
   );
 }

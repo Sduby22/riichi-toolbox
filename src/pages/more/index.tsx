@@ -14,7 +14,7 @@ const ENTRY_GROUPS: EntryGroupType = {
     {
       primary: <FormattedMessage id="more.about" />,
       icon: <Info />,
-      href: "info",
+      href: "about",
     },
   ],
   "more.supportme": [

@@ -31,7 +31,7 @@ export default function Page() {
   return (
     <>
       <Title titleId="more.about" />
-      <SettingsContainer entryGroups={ENTRY_GROUPS} />;
+      <SettingsContainer entryGroups={ENTRY_GROUPS} />
     </>
   );
 }

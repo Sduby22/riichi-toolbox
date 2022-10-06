@@ -10,7 +10,7 @@ import DiscardPage from "./calculator/discard";
 import Cheatsheet from "./cheatsheet";
 import Home from "./home";
 import More from "./more";
-import MoreInfo from "./more/info";
+import About from "./more/about";
 import AttributionPage from "./more/info.attribution";
 import SettingsPage from "./more/settings";
 
@@ -24,8 +24,8 @@ const router2 = createBrowserRouter(
         <Route path="calculator/discard" element={<DiscardPage />} />
         <Route path="home" element={<Home />} />
         <Route path="more" element={<More />} />
-        <Route path="more/info" element={<MoreInfo />} />
-        <Route path="more/info/attribution" element={<AttributionPage />} />
+        <Route path="more/about" element={<About />} />
+        <Route path="more/about/attribution" element={<AttributionPage />} />
         <Route path="more/settings" element={<SettingsPage />} />
       </Route>
     </>
