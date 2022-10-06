@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Hand } from "../Mahjong";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import yakujson from "./yakus.json";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import {
+  Button,
   Card,
   CardContent,
   Chip,
@@ -118,17 +119,18 @@ function MyCard({
 
 type YakuListItemProp = {
   yaku: YakuType;
+  open?: boolean;
+  onClick?: () => void;
 };
 
 {
   /* The list item for each yaku */
 }
-function YakuListItem_({ yaku }: YakuListItemProp) {
-  const [open, setOpen] = React.useState(false);
+function YakuListItem_({ yaku, open = false, onClick }: YakuListItemProp) {
   return (
     <>
       <Divider></Divider>
-      <ListItemButton onClick={() => setOpen(!open)}>
+      <ListItemButton onClick={onClick}>
         <Typography variant="button" sx={{ flexGrow: 1 }}>
           <FormattedMessage id={`yaku.${yaku.name}.name`} />
         </Typography>
@@ -249,40 +251,73 @@ function SortChip({
 function Yaku() {
   const [sort, setSort] = React.useState("han");
   const [rev, setRev] = React.useState(false);
+  const [expand, setExpand] = React.useState(false);
+  const [open, setOpen] = React.useState(Array(YAKUS.length).fill(expand));
+
+  const handleRev = (rev: boolean) => {
+    setRev(rev);
+    setOpen(Array(YAKUS.length).fill(expand));
+  };
+
+  const handleSort = (sort: string) => {
+    setSort(sort);
+    setOpen(Array(YAKUS.length).fill(expand));
+  };
 
   const currmap = sort === "han" ? hanMap : freqMap;
-
+  let currind = 0;
   return (
     <Container sx={{ display: "flex", flexDirection: "column", p: 0 }}>
       <Box
         sx={{
           mb: 2,
           display: "flex",
-          justifyContent: "end",
+          justifyContent: "space-between",
+          flexWrap: "wrap-reverse",
           alignItems: "center",
         }}
       >
-        {/* Sort By */}
-        <Typography color="text.secondary" variant="subtitle2">
-          <FormattedMessage id="sortby" defaultMessage="Sort By" />
-        </Typography>
-        <SortChip
-          sort={sort}
-          setSort={setSort}
-          rev={rev}
-          setRev={setRev}
-          id="han"
-          defaultMessage="Han"
-        />
-        <SortChip
-          sort={sort}
-          setSort={setSort}
-          rev={rev}
-          setRev={setRev}
-          defaultRev={true}
-          id="frequency"
-          defaultMessage="Frequency"
-        />
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Button
+            onClick={() => {
+              setExpand(!expand);
+              setOpen(Array(YAKUS.length).fill(!expand));
+            }}
+            sx={{}}
+          >
+            {!expand ? (
+              <FormattedMessage
+                id="yaku.expandall"
+                defaultMessage="Expand All"
+              />
+            ) : (
+              <FormattedMessage id="yaku.hideall" defaultMessage="Hide All" />
+            )}
+          </Button>
+        </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          {/* Sort By */}
+          <Typography color="text.secondary" variant="subtitle2">
+            <FormattedMessage id="sortby" defaultMessage="Sort By" />
+          </Typography>
+          <SortChip
+            sort={sort}
+            setSort={handleSort}
+            rev={rev}
+            setRev={handleRev}
+            id="han"
+            defaultMessage="Han"
+          />
+          <SortChip
+            sort={sort}
+            setSort={handleSort}
+            rev={rev}
+            setRev={handleRev}
+            defaultRev={true}
+            id="frequency"
+            defaultMessage="Frequency"
+          />
+        </div>
       </Box>
       {(rev
         ? Array.from(currmap.entries()).reverse()
@@ -325,9 +360,22 @@ function Yaku() {
                   )
                 }
               >
-                {yakus.map((yaku) => (
-                  <YakuListItem key={yaku.name} yaku={yaku} />
-                ))}
+                {yakus.map((yaku) => {
+                  const ind = currind++;
+                  return (
+                    <YakuListItem
+                      open={open[ind]}
+                      key={yaku.name}
+                      yaku={yaku}
+                      onClick={() => {
+                        setOpen((o) => {
+                          o[ind] = !o[ind];
+                          return [...o];
+                        });
+                      }}
+                    />
+                  );
+                })}
               </List>
             </Card>
           );
@@ -336,4 +384,4 @@ function Yaku() {
   );
 }
 
-export default React.memo(Yaku);
+export default Yaku;

@@ -10,6 +10,10 @@
   "nav.home": "Home",
   "nav.more": "More",
 
+  "cheatsheet.yakuList": "Yaku List",
+  "cheatsheet.fuList": "Fu List",
+  "cheatsheet.scoring": "Scoring",
+
   "more.settings": "Settings",
   "more.settings.lang": "Language",
   "more.settings.lang.auto": "Auto Detect",
@@ -26,8 +30,8 @@
   "calculator.whichToDiscard.header": "Which to Discard?",
   "calculator.whichToDiscard.content": "Given a hand of tiles, calculates the optimal discard to maximize your chances of winning.",
 
-  "yaku.yakuList": "Yaku List",
-  "yaku.fuList": "Fu List",
+  "yaku.expandall": "Expand All",
+  "yaku.hideall": "Hide All",
   "yaku.han": "{han} Han",
   "yaku.closedHandsOnly": "Closed",
   "yaku.meldedPenalty": "melded-",

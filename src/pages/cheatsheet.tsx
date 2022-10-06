@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import SwipeableViews from "react-swipeable-views";
 import Yaku from "../components/Cheatsheet/Yaku";
 import Fu from "../components/Cheatsheet/Fu";
+import Scoring from "../components/Cheatsheet/Scoring";
 import { Tab, Tabs } from "@mui/material";
 import { useAppContext } from "../providers/AppContext";
 import Title from "../components/Title";
@@ -12,6 +13,21 @@ interface TabPanelProps {
   children?: React.ReactNode;
   dir?: string;
 }
+
+const TABS = [
+  {
+    labelId: "cheatsheet.yakuList",
+    component: <Yaku />,
+  },
+  {
+    labelId: "cheatsheet.fuList",
+    component: <Fu />,
+  },
+  {
+    labelId: "cheatsheet.scoring",
+    component: <Scoring />,
+  },
+];
 
 function Tabbar() {
   const { state, dispatch } = useAppContext();
@@ -26,14 +42,9 @@ function Tabbar() {
       textColor="inherit"
       variant="fullWidth"
     >
-      <Tab
-        label={
-          <FormattedMessage id="yaku.yakuList" defaultMessage={"Yaku List"} />
-        }
-      />
-      <Tab
-        label={<FormattedMessage id="yaku.fuList" defaultMessage={"Fu List"} />}
-      />
+      {TABS.map((tab, i) => (
+        <Tab key={i} label={<FormattedMessage id={tab.labelId} />} />
+      ))}
     </Tabs>
   );
 }
@@ -68,12 +79,9 @@ function Cheatsheet() {
             dispatch({ type: "set-tabValue", payload: val });
           }}
         >
-          <TabPanel>
-            <Yaku />
-          </TabPanel>
-          <TabPanel>
-            <Fu />
-          </TabPanel>
+          {TABS.map((tab, i) => (
+            <TabPanel key={i}>{tab.component}</TabPanel>
+          ))}
         </SwipeableViews>
       </Box>
     </>
