@@ -33,7 +33,7 @@ type EntryItem = {
 
 export function GroupEntry({ children, title }: EntryProp) {
   return (
-    <Box sx={{ pl: 1, pb: 2 }}>
+    <Box sx={{ pl: 1, pb: 2, pr: 1 }}>
       <Typography
         sx={{ ml: 9, mt: 1.5, mb: 1 }}
         color="primary"
