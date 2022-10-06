@@ -10,8 +10,18 @@
   "nav.home": "Home",
   "nav.more": "More",
 
-  "more.info": "Info",
   "more.settings": "Settings",
+  "more.settings.lang": "Language",
+  "more.settings.lang.auto": "Auto Detect",
+
+  "more.about": "About",
+  "more.supportme": "Support Us",
+  "more.donation": "Buy Me a Coke",
+  "more.contributeTranslationTitle": "Help Translate",
+  "more.contributeTranslationDesc": "Contribute your translation on our Crowdin project!",
+  "more.about.projectPage": "Project Page",
+  "more.about.osslicense": "Open Source License",
+  "more.about.attribution": "Attribution Information",
 
   "calculator.whichToDiscard.header": "Which to Discard?",
   "calculator.whichToDiscard.content": "Given a hand of tiles, calculates the optimal discard to maximize your chances of winning.",
@@ -25,7 +35,7 @@
   "yaku.doubleYakuman": "Double Yakuman",
   "yaku.frequency1": "Very Rare",
   "yaku.frequency2": "Rare",
-  "yaku.frequency3": "Avarage",
+  "yaku.frequency3": "Average",
   "yaku.frequency4": "Common",
   "yaku.frequency5": "Very Common",
   "yaku.tanyao.name": "Tanyao",
