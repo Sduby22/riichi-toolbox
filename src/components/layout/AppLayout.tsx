@@ -14,6 +14,12 @@ import {
   Paper,
   BottomNavigation,
   BottomNavigationAction,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader,
 } from "@mui/material";
 import ToggleIcon from "material-ui-toggle-icon";
 import { useAppContext } from "../../providers/AppContext";
@@ -61,7 +67,7 @@ function getSelected(path: string, paths: string[]) {
 }
 
 export default function AppLayout() {
-  const { state, dispatch } = useAppContext();
+  const { state } = useAppContext();
   const [selected, setSelected] = useState(-1);
   const loc = useLocation();
   const navigate = useNavigate();
@@ -77,30 +83,15 @@ export default function AppLayout() {
     }
   }, [loc.pathname]);
 
-  const handleDrawerToggle = () => {
-    dispatch({ type: "toggle-drawer" });
-  };
-
   return (
     <>
       <Title titleId="title" />
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         {/* AppBar */}
         <AppToolBar tabbar={state.tabbar} />
-        <Drawer
-          variant="temporary"
-          open={state.drawerOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: state.drawerWidth,
-            },
-          }}
-        ></Drawer>
+
+        {/* drawer */}
+        <MyDrawer selected={selected} />
 
         <Outlet />
 
@@ -135,5 +126,47 @@ export default function AppLayout() {
         </Paper>
       </Box>
     </>
+  );
+}
+
+function MyDrawer({ selected }: { selected: number }) {
+  const { state, dispatch } = useAppContext();
+  const navi = useNavigate();
+  const handleDrawerToggle = () => {
+    dispatch({ type: "toggle-drawer" });
+  };
+  return (
+    <Drawer
+      variant="temporary"
+      open={state.drawerOpen}
+      onClose={handleDrawerToggle}
+      ModalProps={{
+        keepMounted: true, // Better open performance on mobile.
+      }}
+      sx={{
+        "& .MuiDrawer-paper": {
+          boxSizing: "border-box",
+          width: state.drawerWidth,
+        },
+      }}
+    >
+      <List>
+        <ListSubheader>Riichi Toolbox</ListSubheader>
+        {navItems.map((item, i) => (
+          <ListItem key={i} disablePadding>
+            <ListItemButton
+              selected={selected === i}
+              onClick={() => {
+                navi(item.href);
+                handleDrawerToggle();
+              }}
+            >
+              <ListItemIcon>{item.onIcon}</ListItemIcon>
+              <ListItemText primary={<FormattedMessage id={item.id} />} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Drawer>
   );
 }
