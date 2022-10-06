@@ -33,6 +33,9 @@ function AppProvider({ children }: { children: React.ReactNode }) {
         palette: {
           mode: state.prefersDarkMode ? "dark" : "light",
         },
+        typography: {
+          fontFamily: "Roboto,Helvetica,Arial,Noto Sans SC,sans-serif",
+        },
       }),
     [state.prefersDarkMode]
   );

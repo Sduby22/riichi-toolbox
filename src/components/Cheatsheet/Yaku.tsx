@@ -263,7 +263,7 @@ function Yaku() {
         }}
       >
         {/* Sort By */}
-        <Typography color="text.secondary">
+        <Typography color="text.secondary" variant="subtitle2">
           <FormattedMessage id="sortby" defaultMessage="Sort By" />
         </Typography>
         <SortChip

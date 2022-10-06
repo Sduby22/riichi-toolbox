@@ -3,5 +3,9 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: Roboto, 'Noto Sans SC', sans-serif;
+  font-family: "Roboto","Helvetica","Arial","Noto Sans SC",sans-serif !important;
+}
+
+.font {
+  font-family: "Roboto","Helvetica","Arial","Noto Sans SC",sans-serif;
 }
