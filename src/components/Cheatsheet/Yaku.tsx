@@ -176,7 +176,7 @@ function YakuListItem_({ yaku }: YakuListItemProp) {
             }}
           >
             <NoSsr>
-              <Hand tiles={yaku.example} />
+              <Hand tiles={yaku.example} waiting />
             </NoSsr>
           </Box>
         )}
