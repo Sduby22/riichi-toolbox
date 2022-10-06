@@ -8,8 +8,17 @@
   "nav.calculator": "计算器",
   "nav.home": "主页",
   "nav.more": "更多",
-  "more.info": "信息",
   "more.settings": "设置",
+  "more.settings.lang": "语言",
+  "more.settings.lang.auto": "自动检测",
+  "more.about": "关于",
+  "more.supportme": "支持我们！",
+  "more.donation": "请作者喝可乐",
+  "more.contributeTranslationTitle": "协助翻译",
+  "more.contributeTranslationDesc": "在我们的 Crowdin 项目上贡献您的翻译！",
+  "more.about.projectPage": "项目主页",
+  "more.about.osslicense": "开源许可证",
+  "more.about.attribution": "创作版权信息",
   "calculator.whichToDiscard.header": "何切？",
   "yaku.yakuList": "役种列表",
   "yaku.fuList": "算符规则",
@@ -68,5 +77,6 @@
   "yaku.chuuren.name": "九莲宝灯",
   "yaku.chuuren9.name": "纯正九莲宝灯",
   "yaku.chuuren9.description": "九面听的九莲宝灯",
-  "yaku.tenhou.name": "天和"
+  "yaku.tenhou.name": "天和",
+  "yaku.chiihou.name": "地和"
 }
