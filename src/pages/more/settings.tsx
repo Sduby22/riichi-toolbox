@@ -1,45 +1,21 @@
-import { Language } from "@mui/icons-material";
-import {
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  Radio,
-  DialogActions,
-  Button,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
-import { useState } from "react";
+import { DarkMode, Language } from "@mui/icons-material";
+import { useMediaQuery } from "@mui/material";
 import { FormattedMessage } from "react-intl";
-import SettingsContainer, {
-  EntryGroupType,
-} from "../../components/SettingsContainer";
+import { EntryGroupType } from "../../components/Settings/Entry";
+import SettingsContainer from "../../components/Settings/SettingsContainer";
 import Title from "../../components/Title";
 import { useAppContext } from "../../providers/AppContext";
 import { getTranslationOrSelf } from "../../providers/AppProvider";
 
-const LANGUAGES: Record<string, string | undefined> = {
-  "中文(简体)": "zh-CN",
-  English: "en-US",
-  日本語: "ja-JP",
-};
+const labels = ["more.settings.lang.auto", "中文(简体)", "English", "日本語"];
+const locales = [undefined, "zh-CN", "en-US", "ja-JP"];
 
 export default function SettingsPage() {
-  const { state, dispatch } = useAppContext();
-  const [langOpen, setLangOpen] = useState(false);
+  const { dispatch } = useAppContext();
 
-  const handleLangOpen = () => {
-    setLangOpen(true);
-  };
-
-  const handleLangClose = (val?: string) => {
-    setLangOpen(false);
-
-    if (val) {
-      const locale = LANGUAGES[val];
+  const handleLangClose = (val?: number) => {
+    if (val !== undefined) {
+      const locale = locales[val];
       dispatch({ type: "set-locale", payload: locale });
       if (locale) {
         localStorage.setItem("locale", locale);
@@ -49,118 +25,86 @@ export default function SettingsPage() {
     }
   };
 
-  const auto = getTranslationOrSelf("more.settings.lang.auto");
-  LANGUAGES[auto] = undefined;
-  let currlang;
-  if (localStorage.getItem("locale") === null) {
-    currlang = auto;
-  } else {
-    currlang = getLangString(state.locale);
+  const [langInd, langStr] = getLang(localStorage.getItem("locale"));
+
+  function getLang(locale: string | null): [number, string] {
+    if (locale) {
+      for (const [i, val] of locales.entries()) {
+        if (val === undefined) continue;
+        if (val.startsWith(locale.split("-")[0])) {
+          return [i, labels[i]];
+        }
+      }
+    }
+    return [0, "English"];
   }
+
+  const darkModeLabels = [
+    "more.settings.darkmode.auto",
+    "more.settings.darkmode.enable",
+    "more.settings.darkmode.disable",
+  ];
+
+  const darkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const handleDarkModeClose = (val?: number) => {
+    switch (val) {
+      case 0:
+        dispatch({ type: "set-darkMode", payload: darkMode });
+        localStorage.removeItem("darkMode");
+        break;
+      case 1:
+        dispatch({ type: "set-darkMode", payload: true });
+        localStorage.setItem("darkMode", "dark");
+        break;
+      case 2:
+        dispatch({ type: "set-darkMode", payload: false });
+        localStorage.setItem("darkMode", "light");
+        break;
+    }
+  };
+
+  const currDark = (() => {
+    switch (localStorage.getItem("darkMode")) {
+      case null:
+        return 0;
+      case "dark":
+        return 1;
+      case "light":
+        return 2;
+      default:
+        return -1;
+    }
+  })();
 
   const ENTRY_GROUPS: EntryGroupType = {
     "more.settings": [
       {
         primary: <FormattedMessage id="more.settings.lang" />,
-        secondary: `${
-          currlang === auto ? getLangString(state.locale) : currlang
-        }`,
+        secondary: `${langStr}`,
         icon: <Language />,
-        onClick: handleLangOpen,
+        dialog: {
+          onClose: handleLangClose,
+          options: labels.map((x) => getTranslationOrSelf(x)),
+          value: langInd,
+        },
+      },
+      {
+        primary: <FormattedMessage id="more.settings.darkmode" />,
+        secondary: <FormattedMessage id={darkModeLabels[currDark]} />,
+        icon: <DarkMode />,
+        dialog: {
+          onClose: handleDarkModeClose,
+          options: darkModeLabels.map((x) => getTranslationOrSelf(x)),
+          value: currDark,
+        },
       },
     ],
   };
-
-  function getLangString(locale: string) {
-    for (const key in LANGUAGES) {
-      const val = LANGUAGES[key];
-      if (val === undefined) continue;
-      if (val.startsWith(locale.split("-")[0])) {
-        return key;
-      }
-    }
-    return "English";
-  }
 
   return (
     <>
       <Title titleId="more.settings" />
       <SettingsContainer entryGroups={ENTRY_GROUPS} />;
-      <LangDialogue
-        options={Object.keys(LANGUAGES)}
-        open={langOpen}
-        onClose={handleLangClose}
-        value={currlang}
-      />
     </>
-  );
-}
-
-type LangDialogueProps = {
-  open: boolean;
-  onClose: (value?: string) => void;
-  value: string;
-  options: string[];
-};
-
-function LangDialogue({
-  open,
-  onClose,
-  value: valueProp,
-  options,
-}: LangDialogueProps) {
-  const [value, setValue] = useState(valueProp);
-
-  return (
-    <Dialog
-      sx={{ "& .MuiDialog-paper": { width: "80%" } }}
-      maxWidth="xs"
-      // TransitionProps={{ onEntering: handleEntering }}
-      open={open}
-      // {...other}
-    >
-      <DialogTitle>
-        <FormattedMessage id="more.settings.lang" />
-      </DialogTitle>
-      <DialogContent
-        sx={{
-          p: 0,
-        }}
-      >
-        <List>
-          {options.map((option) => (
-            <ListItem key={option} sx={{ pt: 0, pb: 0 }}>
-              <ListItemButton
-                sx={{ pt: 1, pb: 1 }}
-                onClick={(_) => setValue(option)}
-              >
-                <ListItemIcon>
-                  <Radio checked={option === value} />
-                </ListItemIcon>
-                <ListItemText primary={option} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </DialogContent>
-      <DialogActions>
-        <Button
-          autoFocus
-          onClick={() => {
-            onClose();
-            setValue(valueProp);
-          }}
-        >
-          Cancel
-        </Button>
-        <Button
-          onClick={() => {
-            onClose(value);
-          }}
-        >
-          Ok
-        </Button>
-      </DialogActions>
-    </Dialog>
   );
 }

@@ -19,7 +19,7 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  ListSubheader,
+  Typography,
 } from "@mui/material";
 import ToggleIcon from "material-ui-toggle-icon";
 import { useAppContext } from "../../providers/AppContext";
@@ -151,7 +151,9 @@ function MyDrawer({ selected }: { selected: number }) {
       }}
     >
       <List>
-        <ListSubheader>Riichi Toolbox</ListSubheader>
+        <Typography sx={{ p: 2 }} variant="subtitle2" color="text.secondary">
+          Riichi Toolbox
+        </Typography>
         {navItems.map((item, i) => (
           <ListItem key={i} disablePadding>
             <ListItemButton

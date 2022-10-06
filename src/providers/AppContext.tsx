@@ -102,7 +102,12 @@ function ContextProvider({ children }: { children: React.ReactNode }) {
   }, [navigator.language]);
 
   useEffect(() => {
-    dispatch({ type: "set-darkMode", payload: prefersDarkMode });
+    const darkMode = localStorage.getItem("darkMode");
+    if (!darkMode) {
+      dispatch({ type: "set-darkMode", payload: prefersDarkMode });
+    } else {
+      dispatch({ type: "set-darkMode", payload: darkMode === "dark" });
+    }
   }, [prefersDarkMode]);
 
   return <Provider value={{ state, dispatch }}>{children}</Provider>;

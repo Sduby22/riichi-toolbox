@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FormattedMessage } from "react-intl";
 import SettingsContainer, {
   EntryGroupType,
-} from "../../components/SettingsContainer";
+} from "../../components/Settings/SettingsContainer";
 import Title from "../../components/Title";
 
 export default function Page() {

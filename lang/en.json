@@ -17,6 +17,10 @@
   "more.settings": "Settings",
   "more.settings.lang": "Language",
   "more.settings.lang.auto": "Auto Detect",
+  "more.settings.darkmode": "Dark Mode",
+  "more.settings.darkmode.auto": "Follow System",
+  "more.settings.darkmode.enable": "Enabled",
+  "more.settings.darkmode.disable": "Disabled",
 
   "more.about": "About",
   "more.supportme": "Support Us",

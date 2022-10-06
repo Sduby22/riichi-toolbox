@@ -1,8 +1,7 @@
 import { Fastfood, Info, Settings, Translate } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
-import SettingsContainer, {
-  EntryGroupType,
-} from "../../components/SettingsContainer";
+import { EntryGroupType } from "../../components/Settings/Entry";
+import SettingsContainer from "../../components/Settings/SettingsContainer";
 import Title from "../../components/Title";
 
 const ENTRY_GROUPS: EntryGroupType = {
