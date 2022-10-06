@@ -10,10 +10,18 @@
   "nav.home": "Home",
   "nav.more": "More",
 
-  "more.info": "Info",
   "more.settings": "Settings",
   "more.settings.lang": "Language",
   "more.settings.lang.auto": "Auto Detect",
+
+  "more.about": "About",
+  "more.supportme": "Support Us",
+  "more.donation": "Buy Me a Coffee",
+  "more.contributeTranslationTitle": "Help Translate",
+  "more.contributeTranslationDesc": "Contribute your translation on our Crowdin project!",
+  "more.about.projectPage": "Project Page",
+  "more.about.osslicense": "Open Source License",
+  "more.about.attribution": "Attribution Infomation",
 
   "calculator.whichToDiscard.header": "Which to Discard?",
   "calculator.whichToDiscard.content": "Given a hand of tiles, calculates the optimal discard to maximize your chances of winning.",

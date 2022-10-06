@@ -3,6 +3,7 @@ import {
   Container,
   Divider,
   List,
+  ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
@@ -26,7 +27,7 @@ export type EntryGroupType = {
 type EntryItem = {
   primary?: React.ReactNode;
   secondary?: React.ReactNode;
-  icon: React.ReactNode;
+  icon?: React.ReactNode;
   href?: string;
   onClick?: () => void;
 };
@@ -55,8 +56,9 @@ function LinkEntry({ item }: { item: EntryItem }): JSX.Element {
 }
 
 function ListEntry({ item }: { item: EntryItem }): JSX.Element {
+  const padding = item.secondary ? 1 : 2;
   return (
-    <ListItemButton onClick={item.onClick}>
+    <ListItemButton sx={{ pt: padding, pb: padding }} onClick={item.onClick}>
       <ListItemIcon>{item.icon}</ListItemIcon>
       <ListItemText primary={item.primary} secondary={item.secondary} />
     </ListItemButton>
@@ -72,7 +74,7 @@ function SettingsContainer({
   theme.components?.MuiAppBar?.defaultProps;
 
   return (
-    <Container sx={{ pt: 10, mt: -10, pl: 0, pr: 0 }}>
+    <Container sx={{ pt: 9, mt: -10, pl: 0, pr: 0 }}>
       <Paper elevation={2} sx={{ height: "120%" }}>
         <List sx={{ pt: 10, width: "100%", bgcolor: "transparent" }}>
           {Object.entries(entry_groups).map(([group_id, items], ind) => (

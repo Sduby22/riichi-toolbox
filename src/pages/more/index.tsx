@@ -1,4 +1,4 @@
-import { Info, Settings } from "@mui/icons-material";
+import { Fastfood, Info, Settings, Translate } from "@mui/icons-material";
 import { FormattedMessage } from "react-intl";
 import SettingsContainer, {
   EntryGroupType,
@@ -13,9 +13,23 @@ const ENTRY_GROUPS: EntryGroupType = {
       href: "settings",
     },
     {
-      primary: <FormattedMessage id="more.info" />,
+      primary: <FormattedMessage id="more.about" />,
       icon: <Info />,
       href: "info",
+    },
+  ],
+  "more.supportme": [
+    {
+      primary: <FormattedMessage id="more.contributeTranslationTitle" />,
+      secondary: <FormattedMessage id="more.contributeTranslationDesc" />,
+      icon: <Translate />,
+      onClick: () => {
+        open("https://crowdin.com/project/riichi-toolbox");
+      },
+    },
+    {
+      primary: <FormattedMessage id="more.donation" />,
+      icon: <Fastfood />,
     },
   ],
 };
