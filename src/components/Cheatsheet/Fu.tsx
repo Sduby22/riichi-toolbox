@@ -4,6 +4,7 @@ import {
   Card,
   CardContent,
   Collapse,
+  Container,
   ListItemButton,
   Typography,
 } from "@mui/material";
@@ -368,6 +369,8 @@ function HandFu() {
         </Typography>
       </div>
 
+      <Typography>Base hand value: 20 Fu</Typography>
+
       {/* menzen */}
       <Box>
         <Typography
@@ -529,14 +532,16 @@ function RoundUpFu() {
 export default function Fu() {
   return (
     <>
-      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        <Chiitoi />
-        <GroupFu />
-        <PairFu />
-        <WaitFu />
-        <HandFu />
-        <RoundUpFu />
-      </div>
+      <Container maxWidth="md">
+        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+          <Chiitoi />
+          <GroupFu />
+          <PairFu />
+          <WaitFu />
+          <HandFu />
+          <RoundUpFu />
+        </div>
+      </Container>
     </>
   );
 }
