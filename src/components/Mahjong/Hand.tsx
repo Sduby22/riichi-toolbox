@@ -7,10 +7,19 @@ type Props = {
   tiles: string;
   waiting?: boolean;
   value?: number;
+  maxWidth?: number;
+  style?: React.CSSProperties;
   onHover?: (ind: number) => void;
 };
 
-export function Hand_({ tiles, value = -1, waiting = false, onHover }: Props) {
+export function Hand_({
+  tiles,
+  value = -1,
+  waiting = false,
+  onHover,
+  maxWidth,
+  style,
+}: Props) {
   const [hand, open, wait] = parse_tile_str(tiles);
 
   const onMouseOver = (ind: number) => {
@@ -28,6 +37,7 @@ export function Hand_({ tiles, value = -1, waiting = false, onHover }: Props) {
         justifyContent: "center",
         alignItems: "flex-end",
         gap: 2,
+        ...style,
       }}
     >
       {/* Hand */}
@@ -35,6 +45,7 @@ export function Hand_({ tiles, value = -1, waiting = false, onHover }: Props) {
         .sort((a, b) => a - b)
         .map((t, i) => (
           <Tile
+            maxWidth={maxWidth}
             hover={value === i}
             key={i}
             tile={t}
@@ -45,8 +56,10 @@ export function Hand_({ tiles, value = -1, waiting = false, onHover }: Props) {
 
       {open?.map((tiles, i) => (
         <React.Fragment key={i}>
-          <div style={{ flexGrow: 0.3, maxWidth: 5 }}></div>
-          <Open tiles={tiles} />
+          {(i !== 0 || hand.length !== 0) && (
+            <div style={{ flexGrow: 0.3, maxWidth: 5 }}></div>
+          )}
+          <Open tiles={tiles} maxWidth={maxWidth} />
         </React.Fragment>
       ))}
 
@@ -55,6 +68,7 @@ export function Hand_({ tiles, value = -1, waiting = false, onHover }: Props) {
           <div style={{ flexGrow: 0.6, maxWidth: 5 }}></div>
           <Tile
             hover={value === hand.length}
+            maxWidth={maxWidth}
             tile={wait}
             waiting={waiting}
             onMouseOver={onMouseOver(hand.length)}

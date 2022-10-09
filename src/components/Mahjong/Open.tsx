@@ -3,10 +3,11 @@ import { DoubleTile } from "./DoubleTile";
 import Tile from "./Tile";
 import { TileType } from "./utils";
 
-type Variants = "l" | "m" | "r";
+type Variants = "l" | "m" | "r" | "closed";
 
 type Props = {
   tiles: TileType[];
+  maxWidth?: number;
   variant?: Variants | undefined;
 };
 
@@ -21,9 +22,17 @@ export default class Open extends PureComponent<Props> {
   render() {
     const { tiles } = this.props;
     return tiles.length === 3 ? (
-      <ChiPon tiles={tiles} variant={this.vari as Variants} />
+      <ChiPon
+        maxWidth={this.props.maxWidth}
+        tiles={tiles}
+        variant={this.vari as Variants}
+      />
     ) : (
-      <Kan tiles={tiles} variant={this.vari as Variants} />
+      <Kan
+        maxWidth={this.props.maxWidth}
+        tiles={tiles}
+        variant={this.vari as Variants}
+      />
     );
   }
 }
@@ -36,31 +45,52 @@ class ChiPon extends PureComponent<Props> {
     const [l, m, r] = this.props.tiles;
     return (
       <>
-        <Tile rotate={this.props.variant === "l"} tile={l} />
-        <Tile rotate={this.props.variant === "m"} tile={m} />
-        <Tile rotate={this.props.variant === "r"} tile={r} />
+        <Tile
+          maxWidth={this.props.maxWidth}
+          rotate={this.props.variant === "l"}
+          tile={l}
+        />
+        <Tile
+          maxWidth={this.props.maxWidth}
+          rotate={this.props.variant === "m"}
+          tile={m}
+        />
+        <Tile
+          maxWidth={this.props.maxWidth}
+          rotate={this.props.variant === "r"}
+          tile={r}
+        />
       </>
     );
   }
 }
 
-class Kan extends PureComponent<Props> {
+type KanProps = Props;
+class Kan extends PureComponent<KanProps> {
   render() {
     const { tiles, variant } = this.props;
     const [l, m1, m2, r] = tiles;
     return (
       <>
-        <Tile rotate={variant === "l"} tile={l} />
+        <Tile
+          maxWidth={this.props.maxWidth}
+          rotate={variant === "l"}
+          tile={closed ? "haku" : l}
+        />
         {variant === "m" ? (
-          <DoubleTile tiles={[m1, m2]} />
+          <DoubleTile maxWidth={this.props.maxWidth} tiles={[m1, m2]} />
         ) : (
           <>
-            <Tile rotate={false} tile={m1} />
-            <Tile rotate={false} tile={m2} />
+            <Tile maxWidth={this.props.maxWidth} rotate={false} tile={m1} />
+            <Tile maxWidth={this.props.maxWidth} rotate={false} tile={m2} />
           </>
         )}
 
-        <Tile rotate={variant === "r"} tile={r} />
+        <Tile
+          maxWidth={this.props.maxWidth}
+          rotate={variant === "r"}
+          tile={closed ? "haku" : l}
+        />
       </>
     );
   }
