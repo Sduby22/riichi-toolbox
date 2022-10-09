@@ -7,7 +7,7 @@ Todo:
 - [ ] PWA Support
 - [ ] Cheatsheet
   - [x] Yaku
-  - [ ] Fu
+  - [x] Fu
   - [ ] Points
 - [ ] Calculator
   - [ ] Points Calculator
@@ -18,19 +18,19 @@ Todo:
   - [ ] Dice Simulator
   - [ ] Discard to Riichi (Chinnitsu)
   - [ ] Chinnitsu Tenpai
-- [ ] More
-  - [ ] Settings
-    - [ ] Language
-    - [ ] Dark Mode
-  - [ ] Info
-    - [ ] Project Page
-    - [ ] Licenses
-    - [ ] Credit
-    - [ ] Donation
+- [x] More
+  - [x] Settings
+    - [x] Language
+    - [x] Dark Mode
+  - [x] Info
+    - [x] Project Page
+    - [x] Licenses
+    - [x] Credit
+    - [x] Donation
 
 # Introduction
 
-Riichi Toolbox is built with React + Next.js + MUI v5
+Riichi Toolbox is built with React + MUI v5
 
 # Credit
 
