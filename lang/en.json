@@ -26,6 +26,11 @@
   "cheatsheet.fu.group.example2": "Hatsu Closed Kan = 2 Fu × 4 (Kan) × 2 (Honor) × 2 (Closed) = 32 Fu",
   "cheatsheet.fu.group.example3": "Chun Pon = 2 Fu × 2 (Honor) = 4 Fu",
 
+  "cheatsheet.fu.waitfu": "Wait Fu",
+  "cheatsheet.fu.wait.closed": "Closed Wait",
+  "cheatsheet.fu.wait.pair": "Pair Wait",
+  "cheatsheet.fu.wait.oneside": "One-Sided Wait",
+
   "cheatsheet.fu.pairfu": "Pair Fu",
   "cheatsheet.fu.pair.yakuhai": "Yakuhai Pair",
   "cheatsheet.fu.pair.dragon": "Dragon Pair",

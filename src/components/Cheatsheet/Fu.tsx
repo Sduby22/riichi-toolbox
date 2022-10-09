@@ -3,16 +3,12 @@ import {
   Box,
   Card,
   CardContent,
-  CardHeader,
   Collapse,
-  ListItem,
   ListItemButton,
-  Paper,
   Typography,
 } from "@mui/material";
 import { FormattedMessage } from "react-intl";
 import { Hand } from "../Mahjong";
-import { getTranslationOrSelf } from "../../providers/AppProvider";
 
 function ButtonCard({
   children,
@@ -60,7 +56,7 @@ function Chiitoi() {
 
       <Collapse in={open}>
         <Box sx={{ pt: 2 }}>
-          <Hand tiles="114499m 2266p 5544s ton2" />
+          <Hand tiles="1199m 2266p 5544s ton2" />
           <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
             <FormattedMessage
               id="cheatsheet.fu.worth25fu"
