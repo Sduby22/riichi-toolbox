@@ -36,18 +36,18 @@ const navItems = [
     offIcon: <DescriptionOutlined />,
     href: "/cheatsheet",
   },
-  {
-    id: "nav.calculator",
-    onIcon: <Calculate />,
-    offIcon: <CalculateOutlined />,
-    href: "/calculator",
-  },
-  {
-    id: "nav.home",
-    onIcon: <Home />,
-    offIcon: <HomeOutlined />,
-    href: "/home",
-  },
+  // {
+  //   id: "nav.calculator",
+  //   onIcon: <Calculate />,
+  //   offIcon: <CalculateOutlined />,
+  //   href: "/calculator",
+  // },
+  // {
+  //   id: "nav.home",
+  //   onIcon: <Home />,
+  //   offIcon: <HomeOutlined />,
+  //   href: "/home",
+  // },
   {
     id: "nav.more",
     onIcon: <Category />,
