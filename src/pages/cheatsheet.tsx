@@ -23,10 +23,10 @@ const TABS = [
     labelId: "cheatsheet.fuList",
     component: <Fu />,
   },
-  {
-    labelId: "cheatsheet.scoring",
-    component: <Scoring />,
-  },
+  // {
+  //   labelId: "cheatsheet.scoring",
+  //   component: <Scoring />,
+  // },
 ];
 
 function Tabbar() {

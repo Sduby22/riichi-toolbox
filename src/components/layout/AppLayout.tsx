@@ -96,6 +96,7 @@ export default function AppLayout() {
         <Outlet />
 
         {/* bottom naviation bar */}
+        {/*
         <Paper
           sx={{ zIndex: 999, position: "fixed", bottom: 0, left: 0, right: 0 }}
           elevation={2}
@@ -124,6 +125,7 @@ export default function AppLayout() {
             ))}
           </BottomNavigation>
         </Paper>
+          */}
       </Box>
     </>
   );
