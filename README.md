@@ -2,6 +2,9 @@
 
 [![Crowdin](https://badges.crowdin.net/riichi-toolbox/localized.svg)](https://crowdin.com/project/riichi-toolbox)
 
+![image](https://github.com/user-attachments/assets/1c236e2a-7bfa-474e-8601-9a40776c9070)
+
+
 Todo:
 
 - [ ] PWA Support
